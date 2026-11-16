@@ -1,4 +1,4 @@
-import { getUser, login, logout, verifyRequestOrigin } from '@netlify/identity';
+import { login, verifyRequestOrigin } from '@netlify/identity';
 import { error, json } from '../lib/http.mjs';
 
 export default async function handler(request) {
@@ -10,14 +10,11 @@ export default async function handler(request) {
     const password = typeof body.password === 'string' ? body.password : '';
     if (!email || !password || password.length > 1024) return error('Informe email e senha.', 400);
 
+    // The role check runs on the following authenticated request, after the
+    // Netlify runtime has attached the newly issued session cookies.
     await login(email, password);
-    const user = await getUser();
-    if (!user || !Array.isArray(user.roles) || !user.roles.includes('admin')) {
-      await logout();
-      return error('Conta autenticada sem permissão de administrador.', 403);
-    }
-    return json({ authenticated: true, email: user.email });
+    return json({ authenticated: true });
   } catch {
-    return error('Não foi possível entrar. Confira as credenciais e o papel admin no Netlify.', 401);
+    return error('Não foi possível entrar. Confira as credenciais no Netlify Identity.', 401);
   }
 }
