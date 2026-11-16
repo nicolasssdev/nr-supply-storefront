@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191a18">
+  <title>NR Supply — Administração</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f2efe8;--white:#fffefa;--wood:#92785e;--cement:#c4c5c2;--ink:#191a18;--grey:#747671;--silver:#bfc2c5;--line:#d5d3cf;--dark:#20211f;--green:#47705b;--red:#9a4e45;--shadow:0 18px 48px rgba(25,26,24,.08)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.55 Manrope,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.mono,.kicker,.sku,.eyebrow{font-family:"DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.topbar{height:74px;background:var(--dark);color:var(--white);display:flex;justify-content:space-between;align-items:center;padding:0 clamp(18px,5vw,72px);border-bottom:1px solid #4a4b48}.brand{display:flex;align-items:baseline;gap:15px}.brand strong{font-size:22px;letter-spacing:.16em}.brand span{font:11px "DM Mono",monospace;color:var(--silver);letter-spacing:.18em}.top-actions{display:flex;align-items:center;gap:22px}.top-actions a{color:#d3d2cd;font-size:12px}.kicker{font-size:10px;color:var(--wood)}.page{max-width:1440px;margin:auto;padding:38px clamp(16px,4vw,56px) 80px}.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.intro h1{margin:5px 0 0;font-size:clamp(32px,5vw,56px);font-weight:500;letter-spacing:-.06em;line-height:1}.intro p{max-width:540px;color:#62635e;margin:10px 0 0}.notice{padding:15px 18px;background:#e4e1d9;border-left:3px solid var(--silver-dark,var(--silver));font-size:12px;color:#50514d;margin:22px 0 28px}.layout{display:grid;grid-template-columns:minmax(245px,315px) minmax(0,1fr);gap:22px;align-items:start}.panel{background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow)}.side{position:sticky;top:16px}.panel-head{padding:18px 19px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head h2{font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin:0;font-weight:700}.count{font:11px "DM Mono",monospace;color:var(--grey)}.side-tools{padding:14px;border-bottom:1px solid var(--line);display:grid;gap:9px}.search{width:100%;border:1px solid var(--line);background:var(--paper);padding:10px 12px;outline:none}.product-list{max-height:52vh;overflow:auto;padding:7px}.product-row{width:100%;text-align:left;display:grid;grid-template-columns:49px 1fr auto;gap:11px;align-items:center;border:1px solid transparent;background:transparent;padding:9px;border-radius:2px;color:var(--ink)}.product-row:hover,.product-row.active{background:#eeece6;border-color:var(--line)}.thumb{width:49px;height:57px;object-fit:cover;background:#e4e1d9}.row-name{font-size:12px;font-weight:700;line-height:1.3}.row-meta{font:10px "DM Mono",monospace;color:var(--grey);margin-top:5px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green)}.dot.archived{background:var(--grey)}.catalogs{padding:16px 18px;border-top:1px solid var(--line)}.catalogs-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}.catalogs-list{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}.catalog-chip{font:10px "DM Mono",monospace;padding:6px 8px;border:1px solid var(--line);color:#4d4e49;background:var(--paper)}.inline-add{display:flex;gap:7px}.inline-add input{min-width:0;flex:1}.editor{padding:clamp(18px,3vw,34px)}.editor-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:19px;margin-bottom:22px}.editor-top h2{font-size:23px;letter-spacing:-.04em;font-weight:600;margin:4px 0}.editor-top p{margin:0;color:var(--grey);font-size:12px}.actions{display:flex;flex-wrap:wrap;gap:8px}.btn{border:1px solid var(--ink);background:var(--ink);color:var(--white);padding:10px 15px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.btn:hover{background:#393a37}.btn.secondary{background:transparent;color:var(--ink)}.btn.secondary:hover{background:#eeece6}.btn.danger{color:var(--red);border-color:#d8b9b5;background:transparent}.btn.small{padding:8px 10px;font-size:10px}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px}.field{grid-column:span 6;min-width:0}.field.third{grid-column:span 4}.field.full{grid-column:1/-1}.field label{display:block;font:10px "DM Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#686963;margin-bottom:6px}.field input,.field select,.field textarea,.inline-add input{width:100%;border:1px solid var(--line);background:#fcfbf8;padding:11px 12px;color:var(--ink);outline:none;border-radius:0}.field input:focus,.field select:focus,.field textarea:focus,.inline-add input:focus{border-color:var(--wood);box-shadow:0 0 0 2px rgba(146,120,94,.13)}.field textarea{resize:vertical;min-height:94px}.help{font-size:10px;color:var(--grey);margin-top:5px}.image-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.upload{position:relative;display:inline-flex;align-items:center;justify-content:center;border:1px dashed #a8a8a2;color:#3f403c;background:#f5f3ee;padding:10px 13px;font-size:11px;cursor:pointer}.upload input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:12px}.preview{position:relative;aspect-ratio:1/1;background:#e4e1d9;border:1px solid var(--line);overflow:hidden}.preview img{width:100%;height:100%;object-fit:cover}.remove-image{position:absolute;right:5px;top:5px;background:var(--dark);color:white;border:0;width:24px;height:24px}.status{min-height:22px;margin:14px 0 0;color:var(--green);font-size:12px}.status.error{color:var(--red)}.empty{padding:25px 14px;text-align:center;color:var(--grey);font-size:12px}.bottom-actions{border-top:1px solid var(--line);margin-top:24px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.footnote{margin-top:23px;color:var(--grey);font-size:11px}.hidden{display:none!important}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}.product-list{max-height:280px}.intro{display:block}.intro p{max-width:none}.top-actions{gap:12px}.top-actions .mono{display:none}}
+    @media(max-width:540px){.topbar{height:62px;padding:0 16px}.brand{gap:9px}.brand span{font-size:9px}.page{padding-top:27px}.editor{padding:17px}.editor-top{display:block}.actions{margin-top:15px}.field,.field.third{grid-column:span 12}.grid{gap:12px}.bottom-actions{align-items:stretch}.bottom-actions>div{display:flex;flex-wrap:wrap;gap:7px}.bottom-actions .btn{flex:1}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><strong>NR</strong><span>SUPPLY / ADMIN</span></div>
+    <div class="top-actions"><span class="mono" id="admin-user"></span><button class="btn secondary small" id="logout-button" type="button" hidden>Sair</button><a href="index.html">← Voltar ao site</a></div>
+  </header>
+  <main class="page">
+    <div class="intro">
+      <div><span class="kicker">CATÁLOGO · EDIÇÃO</span><h1>Administração</h1></div>
+      <p>Atualize peças, preços, fotografias e coleções. As alterações são compartilhadas com a vitrine após salvar.</p>
+    </div>
+    <div class="notice"><strong>Catálogo conectado:</strong> alterações salvas são compartilhadas pela vitrine via Netlify. Imagens enviadas ficam armazenadas no site.</div>
+    <section class="panel editor" id="invite-panel" hidden style="max-width:540px;margin:32px auto;padding:28px"><h2>Crie sua senha</h2><p>Defina uma senha para acessar o painel NR Supply.</p><form id="invite-form"><div class="grid"><div class="field full"><label for="invite-password">Nova senha</label><input id="invite-password" type="password" autocomplete="new-password" minlength="8" required></div><div class="field full"><label for="invite-password-confirm">Confirme a senha</label><input id="invite-password-confirm" type="password" autocomplete="new-password" minlength="8" required></div></div><button class="btn" type="submit">Criar senha</button><p class="status" id="invite-status" role="status" aria-live="polite"></p></form></section>
+    <section class="panel editor" id="login-panel" style="max-width:540px;margin:32px auto;padding:28px"><h2>Acesso administrativo</h2><p>Entre com o usuário convidado no Netlify Identity com o papel <code>admin</code>.</p><form id="login-form"><div class="grid"><div class="field full"><label for="login-email">E-mail</label><input id="login-email" type="email" autocomplete="username" required></div><div class="field full"><label for="login-password">Senha</label><input id="login-password" type="password" autocomplete="current-password" required></div></div><button class="btn" type="submit">Entrar</button><p class="status" id="login-status" role="status" aria-live="polite"></p></form></section>
+    <div id="admin-app" hidden>
+    <div class="layout">
+      <aside class="panel side">
+        <div class="panel-head"><h2>Produtos</h2><span class="count" id="product-count"></span></div>
+        <div class="side-tools"><input class="search" id="search" type="search" placeholder="Buscar produto…" aria-label="Buscar produto"><button class="btn small" id="new-product" type="button">+ Novo produto</button></div>
+        <div class="product-list" id="product-list"></div>
+        <section class="catalogs">
+          <div class="catalogs-title">Catálogos / coleções</div>
+          <div class="catalogs-list" id="catalogs-list"></div>
+          <div class="inline-add"><input id="new-catalog" type="text" placeholder="Nome da coleção" aria-label="Nome da nova coleção"><button class="btn small" id="add-catalog" type="button">Adicionar</button></div>
+          <p class="help">Atribua a coleção a um produto para incluí-la nos detalhes do catálogo.</p>
+        </section>
+      </aside>
+
+      <section class="panel editor">
+        <div class="editor-top"><div><span class="kicker" id="form-mode">EDITANDO CATÁLOGO</span><h2 id="form-title">Selecione um produto</h2><p>Dados desconhecidos podem ficar vazios; nada será preenchido automaticamente.</p></div><div class="actions"><button class="btn secondary small" id="export-json" type="button">Exportar backup JSON</button><label class="upload">Importar backup<input id="import-json" type="file" accept="application/json,.json"></label></div></div>
+        <form id="product-form">
+          <div class="grid">
+            <div class="field third"><label for="piece">Código / SKU</label><input id="piece" name="piece" maxlength="24" required></div>
+            <div class="field third"><label for="brand">Marca (opcional)</label><input id="brand" name="brand" maxlength="80"></div>
+            <div class="field third"><label for="name">Nome do produto</label><input id="name" name="name" maxlength="120" required></div>
+            <div class="field"><label for="collection">Catálogo / coleção</label><select id="collection" name="collection"></select></div>
+            <div class="field"><label for="filters">Filtros / categorias</label><input id="filters" name="filters" placeholder="Ex.: Nike, Jaqueta"></div>
+            <div class="field third"><label for="price">Preço (R$)</label><input id="price" name="price" inputmode="decimal" type="number" min="0" step="0.01" placeholder="Deixe vazio se não confirmado"></div>
+            <div class="field third"><label for="status">Disponibilidade</label><select id="status" name="status"><option value="available">Disponível</option><option value="archived">Archived</option></select></div>
+            <div class="field third"><label for="index">NR Index</label><select id="index" name="index"><option value="">Sem NR Index</option><option value="333">333 · Selected</option><option value="555">555 · Scarce</option><option value="777">777 · Legacy</option><option value="999">999 · Endgame</option></select></div>
+            <div class="field third"><label for="size">Tamanho</label><input id="size" name="size" placeholder="Opcional"></div>
+            <div class="field third"><label for="year">Ano</label><input id="year" name="year" placeholder="Opcional"></div>
+            <div class="field third"><label for="condition">Condição</label><input id="condition" name="condition" placeholder="Opcional"></div>
+            <div class="field full"><label for="color">Cor / variante</label><input id="color" name="color" placeholder="Opcional"></div>
+            <div class="field full"><label for="description">Descrição</label><textarea id="description" name="description" rows="4" placeholder="Descrição confirmada do produto"></textarea></div>
+            <div class="field full"><label for="image-paths">Caminhos de imagem</label><textarea id="image-paths" name="image-paths" rows="3" placeholder="Uma imagem por linha; ex.: imagens-supply-555/frente.jpg"></textarea><p class="help">Use caminhos do projeto ou carregue fotos abaixo. A primeira imagem será a capa.</p></div>
+            <div class="field full"><label>Adicionar fotografias</label><div class="image-tools"><label class="upload">Escolher imagens<input id="image-upload" type="file" accept="image/*" multiple></label><span class="help">As fotos são reduzidas para facilitar o carregamento.</span></div><div class="preview-grid" id="image-preview"></div></div>
+          </div>
+          <p class="status" id="status-message" role="status" aria-live="polite"></p>
+          <div class="bottom-actions"><div><button class="btn" type="submit">Salvar produto</button><button class="btn secondary" type="button" id="reset-form">Cancelar edição</button></div><div><button class="btn danger" type="button" id="delete-product">Excluir produto</button><button class="btn secondary" type="button" id="restore-defaults">Restaurar original</button></div></div>
+        </form>
+        <p class="footnote">Os dados salvos no painel passam a ser usados pela vitrine publicada. Mantenha um backup JSON antes de alterações em lote.</p>
+      </section>
+    </div>
+    </div>
+  </main>
+  <script src="products-data.js"></script>
+  <script type="module" src="/identity-callback.bundle.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const byId = id => document.getElementById(id);
+    const clone = value => JSON.parse(JSON.stringify(value));
+    const indexLabels = {333:'Selected',555:'Scarce',777:'Legacy',999:'Endgame'};
+    let products = clone(window.NR_PRODUCTS || []);
+    let catalogs = [...(window.NR_CATALOGS || [])];
+    let editingId = null;
+    let serverETag = '';
+    const api = async (path, options = {}) => { const response = await fetch(path, {credentials:'same-origin', ...options}); const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || `Falha na solicitação (${response.status}).`); return {response,data}; };
+
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const setStatus = (message, error = false) => { const element = byId('status-message'); element.textContent = message; element.classList.toggle('error', error); };
+    const fallbackImage = 'imagens-logo-nr/logo-deitada.jpg';
+
+    async function persist(message = 'Alterações salvas no catálogo compartilhado.') { const {response}=await api('/api/catalog',{method:'PUT',headers:{'Content-Type':'application/json','If-Match':serverETag},body:JSON.stringify({products,catalogs})}); serverETag=response.headers.get('ETag')||serverETag; setStatus(message); renderList(); }
+
+    function renderCatalogs(selected = '') {
+      byId('collection').innerHTML = catalogs.map(name => `<option value="${esc(name)}">${esc(name)}</option>`).join('') || '<option value="">Sem catálogo cadastrado</option>';
+      if (selected && !catalogs.includes(selected)) {
+        catalogs.push(selected);
+        byId('collection').insertAdjacentHTML('beforeend', `<option value="${esc(selected)}">${esc(selected)}</option>`);
+      }
+      byId('collection').value = selected || catalogs[0] || '';
+      byId('catalogs-list').innerHTML = catalogs.map(name => `<span class="catalog-chip">${esc(name)}</span>`).join('') || '<span class="help">Nenhuma coleção ainda.</span>';
+    }
+
+    function renderList() {
+      const query = byId('search').value.trim().toLocaleLowerCase('pt-BR');
+      const visible = products.filter(item => `${item.brand} ${item.name} ${item.piece} ${item.collection}`.toLocaleLowerCase('pt-BR').includes(query));
+      byId('product-count').textContent = `${products.length} ITEM${products.length === 1 ? '' : 'S'}`;
+      byId('product-list').innerHTML = visible.length ? visible.map(item => `
+        <button class="product-row${item.id === editingId ? ' active' : ''}" type="button" data-edit="${esc(item.id)}">
+          <img class="thumb" src="${esc(item.images?.[0] || fallbackImage)}" alt="">
+          <span><span class="row-name">${esc(item.name)}</span><span class="row-meta">${esc(item.piece)}${item.brand ? ` · ${esc(item.brand)}` : ''}</span></span>
+          <span class="dot${item.archived ? ' archived' : ''}" title="${item.archived ? 'Archived' : 'Disponível'}"></span>
+        </button>`).join('') : '<p class="empty">Nenhum produto encontrado.</p>';
+      renderCatalogs(byId('collection').value);
+    }
+
+    function setForm(product) {
+      byId('product-form').reset();
+      editingId = product?.id ?? null;
+      byId('form-mode').textContent = editingId ? `EDITAR · ${product.piece}` : 'NOVO ITEM';
+      byId('form-title').textContent = editingId ? product.name : 'Novo produto';
+      byId('piece').value = product?.piece || nextPiece();
+      byId('brand').value = product?.brand || '';
+      byId('name').value = product?.name || '';
+      renderCatalogs(product?.collection || catalogs[0] || '');
+      byId('filters').value = (product?.filterBrands || []).join(', ');
+      byId('price').value = product?.price ?? '';
+      byId('status').value = product?.archived ? 'archived' : 'available';
+      byId('index').value = product?.nrIndex?.code || '';
+      byId('size').value = product?.size || '';
+      byId('year').value = product?.year && !/^unidentified\s*$/i.test(product.year) ? product.year : '';
+      byId('condition').value = product?.condition || '';
+      byId('color').value = product?.color || '';
+      byId('description').value = product?.description || '';
+      byId('image-paths').value = (product?.images || []).join('\n');
+      byId('delete-product').classList.toggle('hidden', !editingId);
+      byId('form-title').textContent = editingId ? product.name : 'Novo produto';
+      renderImagePreview();
+      renderList();
+      setStatus('');
+    }
+
+    function nextPiece() {
+      const highest = products.reduce((max, item) => Math.max(max, Number.parseInt(item.piece, 10) || 0), 0);
+      return String(highest + 1).padStart(3, '0');
+    }
+
+    function renderImagePreview() {
+      const images = byId('image-paths').value.split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      byId('image-preview').innerHTML = images.map((src, index) => `
+        <div class="preview"><img src="${esc(src)}" alt="Prévia da imagem ${index + 1}" onerror="this.src='${fallbackImage}'"><button class="remove-image" type="button" data-remove-image="${index}" aria-label="Remover imagem ${index + 1}">×</button></div>
+      `).join('');
+    }
+
+    async function compressImage(file) {
+      const bitmap = await createImageBitmap(file);
+      const scale = Math.min(1, 1400 / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+      const context = canvas.getContext('2d');
+      context.fillStyle = '#f2efe8';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close?.();
+      return await new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Falha ao comprimir')),'image/jpeg',0.84));
+    }
+
+    function downloadFile(name, content, type) {
+      const url = URL.createObjectURL(new Blob([content], {type}));
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = name;
+      anchor.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    byId('product-list').addEventListener('click', event => {
+      const button = event.target.closest('[data-edit]');
+      if (!button) return;
+      const product = products.find(item => String(item.id) === button.dataset.edit);
+      if (product) setForm(product);
+    });
+    byId('search').addEventListener('input', renderList);
+    byId('new-product').addEventListener('click', () => setForm(null));
+    byId('reset-form').addEventListener('click', () => setForm(products.find(item => String(item.id) === editingId) || null));
+    byId('add-catalog').addEventListener('click', async () => {
+      const name = byId('new-catalog').value.trim();
+      if (!name) return;
+      if (!catalogs.some(item => item.toLocaleLowerCase('pt-BR') === name.toLocaleLowerCase('pt-BR'))) catalogs.push(name);
+      byId('new-catalog').value = '';
+      renderCatalogs(name);
+      try { await persist(`Coleção “${name}” salva no catálogo compartilhado.`); }
+      catch (error) { setStatus(error.message, true); }
+    });
+    byId('image-paths').addEventListener('input', renderImagePreview);
+    byId('image-preview').addEventListener('click', event => {
+      const button = event.target.closest('[data-remove-image]');
+      if (!button) return;
+      const images = byId('image-paths').value.split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      images.splice(Number(button.dataset.removeImage), 1);
+      byId('image-paths').value = images.join('\n');
+      renderImagePreview();
+    });
+    byId('image-upload').addEventListener('change', async event => {
+      const files = [...event.target.files];
+      if (!files.length) return;
+      try {
+        const uploaded = await Promise.all(files.map(async file => { const blob=await compressImage(file); const form=new FormData(); form.append('image',blob,file.name.replace(/\.[^.]+$/,'.jpg')); const {data}=await api('/api/images',{method:'POST',body:form}); return data.url; }));
+        const paths=byId('image-paths').value.split(/\r?\n/).map(item=>item.trim()).filter(Boolean); byId('image-paths').value=[...paths,...uploaded].join('\n'); renderImagePreview(); setStatus(`${uploaded.length} imagem(ns) enviadas. Salve o produto para associá-las ao catálogo.`);
+      } catch (_) { setStatus('Não foi possível processar uma das imagens. Tente JPG, PNG ou WebP.', true); }
+      event.target.value = '';
+    });
+
+    byId('product-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const piece = byId('piece').value.trim();
+      const images = byId('image-paths').value.split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      if (!images.length) { setStatus('Adicione pelo menos uma imagem ou caminho de imagem.', true); return; }
+      const code = byId('index').value;
+      const product = {
+        id: editingId || piece,
+        piece,
+        collection: byId('collection').value.trim(),
+        brand: byId('brand').value.trim(),
+        filterBrands: byId('filters').value.split(',').map(item => item.trim()).filter(Boolean),
+        name: byId('name').value.trim(),
+        size: byId('size').value.trim(),
+        year: byId('year').value.trim(),
+        condition: byId('condition').value.trim(),
+        color: byId('color').value.trim(),
+        price: byId('price').value === '' ? null : Number(byId('price').value),
+        nrIndex: code ? {code, name: indexLabels[code]} : null,
+        archived: byId('status').value === 'archived',
+        description: byId('description').value.trim(),
+        images
+      };
+      const duplicate = products.find(item => String(item.piece) === piece && String(item.id) !== String(editingId));
+      if (duplicate) { setStatus('Esse código já está cadastrado. Use um código único.', true); return; }
+      if (!product.collection) { setStatus('Escolha ou crie um catálogo para este produto.', true); return; }
+      const index = products.findIndex(item => String(item.id) === String(editingId));
+      if (index >= 0) products[index] = product;
+      else { products.push(product); editingId = product.id; }
+      if (!catalogs.includes(product.collection)) catalogs.push(product.collection);
+      try {
+        await persist('Produto salvo no catálogo compartilhado.');
+        setForm(product);
+      } catch (error) { setStatus(error.message, true); }
+    });
+
+    byId('delete-product').addEventListener('click', async () => {
+      if (!editingId || !confirm('Excluir este produto do catálogo local?')) return;
+      products = products.filter(item => String(item.id) !== String(editingId));
+      editingId = null;
+      try { await persist('Produto removido do catálogo compartilhado.'); setForm(null); }
+      catch (error) { setStatus(error.message, true); }
+    });
+
+    byId('export-json').addEventListener('click', () => {
+      downloadFile('nr-supply-catalog.json', JSON.stringify({products, catalogs}, null, 2), 'application/json');
+    });
+    byId('import-json').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      try {
+        const imported = JSON.parse(await file.text());
+        if (!Array.isArray(imported.products) || !Array.isArray(imported.catalogs)) throw new Error('Formato inválido.');
+        products = imported.products;
+        catalogs = imported.catalogs;
+        await persist('Backup importado e salvo no catálogo compartilhado.');
+        setForm(products[0] || null);
+      } catch (_) { setStatus('Não foi possível importar. Escolha um backup JSON exportado por este painel.', true); }
+      event.target.value = '';
+    });
+    byId('restore-defaults').addEventListener('click', async () => {
+      if (!confirm('Descartar as alterações locais e voltar ao catálogo original do projeto?')) return;
+      try {
+        const {data}=await api('/products-data.json',{cache:'no-store'}); products=data.products; catalogs=data.catalogs; editingId=null; await persist('Catálogo publicado inicialmente restaurado.'); renderCatalogs(); setForm(products[0]||null);
+      } catch (error) { setStatus(error.message, true); }
+    });
+
+    function showLogin(message='') { byId('login-panel').hidden=false; byId('admin-app').hidden=true; byId('logout-button').hidden=true; byId('login-status').textContent=message; }
+    async function loadCatalog() { const {response,data}=await api('/api/catalog',{cache:'no-store'}); serverETag=response.headers.get('ETag')||''; products=data.products||[]; catalogs=data.catalogs||[]; byId('admin-app').hidden=false; byId('login-panel').hidden=true; byId('logout-button').hidden=false; renderCatalogs(); renderList(); setForm(products[0]||null); }
+    byId('login-form').addEventListener('submit',async event=>{event.preventDefault();byId('login-status').textContent='Conectando…';try{const {data}=await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:byId('login-email').value,password:byId('login-password').value})});byId('admin-user').textContent=data.email||'ADMIN';await loadCatalog();}catch(error){showLogin(error.message);}});
+    byId('logout-button').addEventListener('click',async()=>{try{await api('/api/logout',{method:'POST'});}finally{showLogin('Sessão encerrada.');}});
+    async function init(){try{const {data}=await api('/api/session',{cache:'no-store'});byId('admin-user').textContent=data.email||'ADMIN';await loadCatalog();}catch(_){showLogin('Entre para editar o catálogo.');}}
+    init();
+  })();
+  </script>
+</body>
+</html>

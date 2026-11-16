@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NR Supply | Vista o que poucos possuem. Roupas exclusivas, raras e fora de linha. Curadoria premium e originalidade.">
+    <meta name="keywords" content="NR Supply, roupas exclusivas, streetwear de luxo, roupas raras, curadoria premium">
+    <meta name="author" content="NR Supply">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:title" content="NR Supply | Vista o que poucos possuem.">
+    <meta property="og:description" content="Curadoria premium de peças raras, originais e fora de linha.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NR Supply">
+    <meta property="og:image" content="imagens-supply-111/sueter-zi-neck-frente.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NR Supply | Vista o que poucos possuem.">
+    <meta name="twitter:description" content="Curadoria premium de peças raras, originais e fora de linha.">
+    <meta name="twitter:image" content="imagens-supply-111/sueter-zi-neck-frente.jpg">
+
+    <script>
+        try {
+            if (sessionStorage.getItem('nr-loader-seen')) {
+                document.documentElement.classList.add('skip-loader');
+            }
+        } catch (_) {}
+
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('reduce-motion');
+        }
+    </script>
+
+    <title>NR Supply | Vista o que poucos possuem.</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23000%22/><text x=%228%22 y=%2272%22 font-size=%2258%22 font-family=%22sans-serif%22 font-weight=%22700%22 fill=%22white%22>NR</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <noscript>
+        <style>
+            #loader { display: none !important; }
+            body { overflow-y: auto !important; cursor: auto !important; }
+    
+        /* Clean editorial rhythm */
+        .section-title { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); gap: clamp(12px,2vw,24px); }
+        .filters { gap: 8px; margin-bottom: 30px; }
+        .filter-btn { padding: 8px 13px; letter-spacing: .08em; border-radius: 2px; }
+        .catalog-grid { gap: clamp(12px, 2vw, 22px); }
+        .product-card { border-radius: 2px; box-shadow: none; }
+        .product-img-wrapper { aspect-ratio: 4 / 5; }
+        .product-info { padding-top: 15px; }
+        .product-name { line-height: 1.35; letter-spacing: .035em; }
+        .product-meta { line-height: 1.45; }
+        .btn { letter-spacing: .1em; transition-duration: .25s; }
+        .section-banner { margin-bottom: clamp(20px,3vw,34px); }
+        @media (max-width: 768px) {
+            :root { --section-v: clamp(54px, 12vw, 78px); }
+            .container { padding-inline: 5%; }
+            .filters { overflow-x:auto; flex-wrap:nowrap; padding:2px 0 8px; scrollbar-width:thin; }
+            .filter-btn { flex:0 0 auto; }
+            .section-title { margin-bottom:22px; }
+            .product-card { min-width:0; }
+            .product-name { font-size:.9rem; }
+        }
+
+
+    </style>
+    </noscript>
+
+    <style>
+        /* =========================================================
+           DESIGN SYSTEM — TOKENS
+        ========================================================= */
+        :root {
+            --bg:              #000000;
+            --surface:         #111111;
+            --surface-2:       #181818;
+            --surface-hover:   #222222;
+            --border:          #1E1E1E;
+            --text-primary:    #FFFFFF;
+            --text-secondary:  #C0C0C0;
+            --text-muted:      #555555;
+
+            --gradient-metallic:   linear-gradient(135deg, #FFFFFF 0%, #D0D0D0 40%, #888888 100%);
+            --gradient-metallic-h: linear-gradient(90deg, transparent, #C0C0C0, transparent);
+
+            --font-display: 'Montserrat', sans-serif;
+            --font-body:    'Inter', sans-serif;
+
+            --ease-out:    cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-soft:   cubic-bezier(0.25, 1, 0.5, 1);
+
+            --t-base:   0.3s ease;
+            --t-smooth: 0.5s var(--ease-out);
+
+            --container: 1280px;
+            --section-v: 120px;
+        }
+
+        /* =========================================================
+           RESET & BASE
+        ========================================================= */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            overflow-y: hidden; /* Liberado pelo JS após o loader */
+            cursor: none;
+        }
+        body.ready,
+        .skip-loader body { overflow-y: auto; }
+        body.modal-open,
+        body.menu-open { overflow: hidden; }
+
+        @media (hover: none) { body, a, button { cursor: auto; } }
+        .reduce-motion body,
+        .reduce-motion a,
+        .reduce-motion button { cursor: auto; }
+
+        a { color: inherit; text-decoration: none; }
+        button { background: none; border: none; font-family: inherit; cursor: none; }
+        @media (hover: none) { button { cursor: pointer; } }
+        ul  { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* =========================================================
+           UTILITÁRIOS
+        ========================================================= */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        .section-padding { padding: var(--section-v) 0; }
+        .text-center { text-align: center; }
+        .mx-auto     { margin-left: auto; margin-right: auto; }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: var(--font-display);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .text-metallic {
+            background: var(--gradient-metallic);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* =========================================================
+           BOTÕES
+        ========================================================= */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid var(--text-secondary);
+            color: var(--text-primary);
+            transition: color var(--t-smooth), border-color var(--t-smooth);
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            isolation: isolate;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--text-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s var(--ease-out);
+            z-index: -1;
+        }
+        .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+        .btn:hover { color: var(--bg); border-color: var(--text-primary); }
+
+        .btn-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-secondary);
+            position: relative;
+            padding-bottom: 3px;
+            transition: color var(--t-base);
+        }
+        .btn-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--text-primary);
+            transition: width var(--t-smooth);
+        }
+        .btn-link:hover { color: var(--text-primary); }
+        .btn-link:hover::after { width: 100%; }
+
+        /* =========================================================
+           CURSOR CUSTOMIZADO — BUG FIX: usa left/top + RAF
+        ========================================================= */
+        .cursor {
+            --cursor-x: -100px;
+            --cursor-y: -100px;
+            width: 8px;
+            height: 8px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
+            transition: width 0.35s var(--ease-out),
+                        height 0.35s var(--ease-out),
+                        background 0.35s ease,
+                        border 0.35s ease,
+                        opacity 0.3s ease;
+            mix-blend-mode: difference;
+            will-change: transform;
+        }
+        .cursor.hovering {
+            width: 46px;
+            height: 46px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.55);
+        }
+        @media (hover: none) { .cursor { display: none; } }
+        .reduce-motion .cursor { display: none; }
+
+        /* =========================================================
+           LOADER — redesenhado: linha que expande + fade sequencial
+        ========================================================= */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden,
+        .skip-loader #loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-nr {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.55em;
+            opacity: 0;
+            animation: loaderFadeUp 0.5s var(--ease-out) 0.2s forwards;
+        }
+        .loader-divider {
+            width: 0;
+            height: 1px;
+            background: var(--gradient-metallic-h);
+            margin: 14px 0;
+            animation: loaderExpand 0.7s var(--ease-out) 0.65s forwards;
+        }
+        .loader-supply {
+            font-family: var(--font-display);
+            font-size: 0.58rem;
+            letter-spacing: 0.8em;
+            color: var(--text-secondary);
+            opacity: 0;
+            animation: loaderFadeUp 0.45s ease 1.2s forwards;
+        }
+        @keyframes loaderFadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes loaderExpand { to { width: 160px; } }
+
+        /* =========================================================
+           HEADER / NAVBAR
+        ========================================================= */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 24px 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: padding var(--t-smooth),
+                        background var(--t-smooth),
+                        border-color var(--t-smooth);
+            border-bottom: 1px solid transparent;
+        }
+        header.scrolled {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 16px 5%;
+            border-bottom-color: var(--surface);
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            z-index: 1001;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            transition: color var(--t-base);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; width: 0; height: 1px;
+            background: var(--text-primary);
+            transition: width var(--t-smooth);
+        }
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text-primary); }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+            padding: 4px;
+        }
+        .menu-toggle span {
+            width: 24px; height: 1px;
+            background: var(--text-primary);
+            display: block;
+            transition: transform 0.4s var(--ease-out), opacity 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 100vw; height: 100vh;
+                background: var(--bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right var(--t-smooth);
+                z-index: 1000;
+            }
+            .nav-links.nav-open { right: 0; }
+            .nav-links a { font-size: 1.1rem; }
+            .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+        #hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('imagens-supply-111/sueter-zi-neck-frente.jpg') center/cover no-repeat;
+            z-index: -2;
+            /* background-attachment: fixed removido — jank em mobile */
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.35) 0%,
+                rgba(0,0,0,0.5)  50%,
+                rgba(0,0,0,0.96) 100%
+            );
+            z-index: -1;
+        }
+        /* Textura grain — adiciona profundidade sem peso de imagem */
+        .hero-grain {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .hero-content p {
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.4;
+            animation: scrollPulse 2.5s ease-in-out infinite;
+            z-index: 1;
+        }
+        .scroll-indicator span {
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+        .scroll-line { width: 1px; height: 48px; background: var(--text-primary); }
+        @keyframes scrollPulse {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+            50%       { transform: translateX(-50%) translateY(-8px); opacity: 0.65; }
+        }
+
+        /* =========================================================
+           SECTION TITLE
+        ========================================================= */
+        .section-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: 3.5rem;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border), transparent);
+        }
+
+        /* =========================================================
+           MANIFESTO
+        ========================================================= */
+        #manifesto { background: var(--surface); }
+        .manifesto-text {
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
+            line-height: 1.5;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        .manifesto-text em {
+            font-style: normal;
+            color: var(--text-primary);
+        }
+
+        /* =========================================================
+           COLLECTIONS
+        ========================================================= */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 20px;
+        }
+        .collection-card {
+            position: relative;
+            height: 440px;
+            background: var(--surface);
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 32px;
+        }
+        /* Gradiente de base para legibilidade do texto */
+        .collection-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 65%;
+            background: linear-gradient(to top, rgba(0,0,0,0.88), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .collection-img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out), opacity 0.5s ease;
+            opacity: 0.55;
+        }
+        .collection-card:hover .collection-img { transform: scale(1.06); opacity: 0.35; }
+        .collection-content { position: relative; z-index: 2; }
+        .collection-content h3 { font-size: 1.5rem; margin-bottom: 4px; }
+        .collection-content p {
+            font-size: 0.68rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 20px;
+        }
+
+        /* =========================================================
+           CATÁLOGO — FILTROS
+        ========================================================= */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: border-color var(--t-base), color var(--t-base);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        /* =========================================================
+           PRODUCT CARD
+        ========================================================= */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--surface);
+            border: 1px solid transparent;
+            transition: border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: none;
+            outline: none;
+        }
+        .product-card:hover { border-color: var(--border); }
+        .product-card:focus-visible {
+            border-color: var(--text-secondary);
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.12);
+        }
+        @media (hover: none), (prefers-reduced-motion: reduce) {
+            .product-card { cursor: pointer; }
+        }
+        .catalog-empty {
+            grid-column: 1 / -1;
+            padding: 48px 24px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+            background: var(--surface-2);
+        }
+        .product-img-wrapper img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--ease-out);
+        }
+        .product-card:hover .product-img-wrapper img { transform: scale(1.06); }
+
+        /* Overlay "Ver Detalhes" — novo */
+        .product-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.62);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 5;
+        }
+        .product-card:hover .product-img-overlay { opacity: 1; }
+        .product-img-overlay span {
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border-bottom: 1px solid rgba(192,192,192,0.5);
+            padding-bottom: 5px;
+        }
+
+        /* NR Tag */
+        .nr-tag {
+            position: absolute;
+            top: 14px; right: 14px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            padding: 4px 10px;
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            border: 1px solid var(--border);
+            z-index: 6;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-brand {
+            font-size: 0.66rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 6px;
+        }
+        .product-name {
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            line-height: 1.35;
+            margin-bottom: 16px;
+        }
+        .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+        .product-meta span {
+            background: var(--bg);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+        }
+        .product-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+        }
+
+        /* =========================================================
+           NR INDEX™
+        ========================================================= */
+        #nr-index { background: var(--surface); }
+        .index-intro {
+            max-width: 540px;
+            margin: 0 auto 56px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+        }
+        .index-card {
+            background: var(--bg);
+            padding: 40px 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.5s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+        .index-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--text-muted);
+        }
+        .index-number {
+            font-family: var(--font-display);
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            transition: color 0.4s ease;
+            display: block;
+        }
+        .index-card:hover .index-number {
+            background: var(--gradient-metallic);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        .index-name {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* 999 Endgame — tratamento especial: glow prateado */
+        .index-card.endgame:hover {
+            border-color: rgba(192,192,192,0.35);
+            box-shadow: 0 0 28px rgba(192,192,192,0.06),
+                        0 20px 40px rgba(0,0,0,0.4);
+        }
+        .index-card.endgame:hover .index-name { color: var(--text-primary); }
+
+        /* =========================================================
+           ARCHIVED
+        ========================================================= */
+        .archived-card {
+            opacity: 0.62;
+            transition: opacity 0.4s ease, border-color 0.4s ease;
+        }
+
+        .archived-card:hover {
+            opacity: 0.72;
+        }
+
+        .archived-card .product-img-wrapper img {
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        /* Selo exibido sobre a capa das peças arquivadas */
+        .stamp {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-12deg);
+            z-index: 10;
+            pointer-events: none;
+            white-space: nowrap;
+            padding: 8px 14px;
+            border: 1.5px solid rgba(255,255,255,0.78);
+            background: rgba(0,0,0,0.22);
+            color: rgba(255,255,255,0.92);
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            line-height: 1;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.65);
+        }
+
+        /* Ajuste sutil apenas da Jaqueta Velejador no celular */
+        @media (max-width: 768px) {
+            .archived-card .product-img-wrapper img[alt*="Velejador" i],
+            .archived-card .product-img-wrapper img[alt*="Velejeador" i] {
+                filter: grayscale(98%) brightness(0.92) contrast(0.95) saturate(0.85) !important;
+            }
+        }
+
+        /* =========================================================
+           PRODUCT MODAL
+        ========================================================= */
+        .product-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 12000;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .product-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .product-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .product-modal-panel {
+            position: relative;
+            z-index: 1;
+            width: min(1080px, 100%);
+            max-height: min(90vh, 900px);
+            max-height: min(90dvh, 900px);
+            overflow: auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            transform: translateY(18px) scale(0.985);
+            transition: transform 0.45s var(--ease-out);
+        }
+        .product-modal.open .product-modal-panel {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 5;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.62);
+            color: var(--text-primary);
+            font-size: 1.35rem;
+            line-height: 1;
+            display: grid;
+            place-items: center;
+            transition: background var(--t-base), color var(--t-base);
+        }
+        .modal-close:hover,
+        .modal-close:focus-visible {
+            background: var(--text-primary);
+            color: var(--bg);
+            outline: none;
+        }
+        .modal-gallery {
+            min-width: 0;
+            background: var(--surface-2);
+            padding: 20px;
+        }
+        .modal-main-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: var(--bg);
+        }
+        .modal-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .modal-thumb {
+            border: 1px solid transparent;
+            opacity: 0.55;
+            transition: opacity var(--t-base), border-color var(--t-base);
+        }
+        .modal-thumb img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        .modal-thumb.active,
+        .modal-thumb:hover,
+        .modal-thumb:focus-visible {
+            opacity: 1;
+            border-color: var(--text-secondary);
+            outline: none;
+        }
+        .modal-details {
+            padding: 54px 42px 42px;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-eyebrow {
+            color: var(--text-secondary);
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .modal-title {
+            font-size: clamp(1.5rem, 3vw, 2.35rem);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .modal-price {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 28px;
+        }
+        .modal-specs {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+        .modal-spec {
+            background: var(--bg);
+            padding: 13px 14px;
+        }
+        .modal-spec dt {
+            color: var(--text-muted);
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        .modal-spec dd {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+        }
+        .modal-description-title {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .modal-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            white-space: pre-line;
+            margin-bottom: 32px;
+        }
+        .modal-action {
+            width: 100%;
+            text-align: center;
+            margin-top: auto;
+        }
+        .modal-action[aria-disabled="true"] {
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .modal-archived-note {
+            color: var(--text-muted);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 12px;
+            text-align: center;
+        }
+        @media (max-width: 820px) {
+            .product-modal { padding: 0; align-items: end; }
+            .product-modal-panel {
+                width: 100%;
+                max-height: 94dvh;
+                grid-template-columns: 1fr;
+            }
+            .modal-gallery { padding: 14px; }
+            .modal-details { padding: 34px 22px 30px; }
+            .modal-close { top: 12px; right: 12px; }
+        }
+
+        /* =========================================================
+           SOBRE
+        ========================================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .about-text h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 24px; }
+        .about-text p { color: var(--text-secondary); margin-bottom: 18px; line-height: 1.8; }
+        .about-features { margin-top: 36px; }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+        .feature-item svg { width: 18px; flex-shrink: 0; fill: var(--text-primary); }
+        @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+
+        /* =========================================================
+           FAQ ACCORDION
+        ========================================================= */
+        #faq { background: var(--surface); }
+        .accordion { max-width: 780px; margin: 0 auto; }
+        .accordion-item { border-bottom: 1px solid var(--border); }
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 26px 0;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color var(--t-base);
+        }
+        .accordion-header:hover,
+        .accordion-header.active { color: var(--text-primary); }
+        .accordion-icon {
+            position: relative;
+            width: 14px; height: 14px;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+        .accordion-icon::before, .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            transition: transform 0.4s var(--ease-out), opacity 0.3s ease;
+        }
+        .accordion-icon::before { top: 6px; left: 0; width: 14px; height: 1px; }
+        .accordion-icon::after  { top: 0; left: 6px; width: 1px; height: 14px; }
+        .accordion-header.active .accordion-icon::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s var(--ease-out);
+        }
+        .accordion-content {
+            padding-bottom: 26px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           CONTATO
+        ========================================================= */
+        #contato { text-align: center; }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .section-banner { grid-column:1/-1; display:block; width:100%; overflow:hidden; margin:0 0 clamp(24px,4vw,48px); border:1px solid var(--border); line-height:0; }
+        .section-banner img { display:block; width:100%; height:auto; aspect-ratio:12/5; object-fit:cover; }
+        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+        .archived-link, .archived-link:visited { background:#fffefa; color:#191a18; border-color:#fffefa; }
+        #the-few .archived-link::before { background:#d5d3cf; }
+        .archived-link:hover, .archived-link:focus-visible { background:#d5d3cf; color:#191a18; border-color:#d5d3cf; }
+        .btn:focus-visible { outline: 2px solid var(--wood); outline-offset: 4px; }
+
+
+        #contato .btn.the-few-cta { border-color:#8f969c; color:#191a18; background:linear-gradient(112deg,#a4a9ae 0%,#f8f9fa 24%,#c2c7cb 47%,#ffffff 62%,#a4a9ae 100%); text-shadow:0 1px rgba(255,255,255,.55); }
+        #contato .btn.the-few-cta::before { background:#191a18; }
+        #contato .btn.the-few-cta:hover, #contato .btn.the-few-cta:focus-visible { color:#fffefa; border-color:#191a18; text-shadow:none; }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+        footer {
+            background: #000;
+            padding: 64px 5%;
+            border-top: 1px solid var(--surface);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+        footer .logo { font-size: 2rem; }
+        .footer-slogan {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .footer-the-few {
+            font-family: var(--font-display);
+            font-size: 0.55rem;
+            letter-spacing: 0.5em;
+            color: var(--surface-hover);
+            margin-top: 8px;
+        }
+        .footer-legal {
+            color: var(--border);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        /* Back to top */
+        #back-to-top {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 46px; height: 46px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease, background 0.3s ease;
+            z-index: 900;
+        }
+        #back-to-top.visible { opacity: 1; visibility: visible; }
+        #back-to-top:hover { background: var(--text-primary); }
+        #back-to-top svg { width: 18px; fill: var(--text-primary); transition: fill 0.3s ease; }
+        #back-to-top:hover svg { fill: var(--bg); }
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* =========================================================
+           PREFERS-REDUCED-MOTION
+        ========================================================= */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; }
+            .product-modal-panel { transform: none; }
+        }
+
+        /* Editorial NR Supply redesign */
+        :root {
+            --paper: #f2efe8;
+            --wood: #92785e;
+            --cement: #c4c5c2;
+            --ink: #191a18;
+            --snow: #fffefa;
+            --silver: #bfc2c5;
+            --silver-dark: #71777d;
+            --bg: var(--paper);
+            --surface: #e4e1d9;
+            --surface-2: #d5d3cf;
+            --surface-hover: #c4c5c2;
+            --border: rgba(24, 25, 23, .18);
+            --text-primary: #191a18;
+            --text-secondary: #555650;
+            --text-muted: #77776f;
+            --gradient-metallic: linear-gradient(135deg, #191a18 0%, #77776f 100%);
+            --section-v: clamp(64px, 7vw, 104px);
+            --container: 1440px;
+        }
+        body { background: var(--bg); color: var(--text-primary); cursor: auto; }
+        .cursor { display: none !important; }
+        button { cursor: pointer; }
+        #navbar {
+            background: rgba(239,237,231,.92);
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+            backdrop-filter: blur(16px);
+        }
+        #navbar .logo { background: none; -webkit-text-fill-color: currentColor; color: var(--text-primary); }
+        .nav-links a { color: var(--text-secondary); }
+        .nav-links a:hover, .nav-links a:focus-visible { color: var(--text-primary); }
+        .menu-toggle span { background: var(--text-primary); }
+        #hero { min-height: min(850px, 92svh); text-align: left; justify-content: flex-start; background: var(--cement); }
+        .hero-bg {
+            inset: 0 0 0 37%;
+            background: url('imagens-supply-111/sueter-zi-neck-frente.jpg') center 42%/cover no-repeat;
+            opacity: .92;
+            z-index: 0;
+        }
+        .hero-overlay {
+            background: linear-gradient(90deg, var(--cement) 0%, rgba(196,197,194,.97) 28%, rgba(196,197,194,.48) 60%, rgba(18,19,17,.12) 100%);
+            z-index: 0;
+        }
+        .hero-grain { opacity: .025; z-index: 1; }
+        .hero-content { width: min(700px, 70%); padding: 8vh 0 8vh 8vw; color: var(--text-primary); }
+        .hero-kicker { color: var(--wood) !important; font-size: .65rem !important; letter-spacing: .22em !important; text-transform: uppercase; margin-bottom: 26px !important; }
+        .hero-content h1 { font-size: clamp(3.8rem, 10vw, 9rem); letter-spacing: -.085em; line-height: .88; }
+        .hero-content p { max-width: 400px; color: var(--text-secondary); letter-spacing: .16em; line-height: 1.8; margin: 28px 0 38px; }
+        .btn { border-color: var(--text-primary); color: var(--text-primary); }
+        .btn::before { background: var(--text-primary); }
+        .btn:hover { color: var(--bg); }
+        .scroll-indicator { left: auto; right: 5%; color: white; }
+        #manifesto { background: #191a18; color: #efede7; }
+        #manifesto .manifesto-text { color: #a5a49d; }
+        #manifesto .manifesto-text em { color: #efede7; }
+        #collections { padding-top: 44px; padding-bottom: 44px; }
+        #collections .section-title { font-size: .72rem; letter-spacing: .22em; margin-bottom: 22px; }
+        .collection-card { height: 250px; background: #dad7cf; color: #191a18; }
+        .collection-img { opacity: .34; filter: grayscale(1); }
+        .collection-card::before { height: 75%; background: linear-gradient(to top, rgba(239,237,231,.95), transparent); }
+        #catalogo { background: var(--bg); }
+        #catalogo .section-title, #archived .section-title, #the-few .section-title { font-size: clamp(2rem, 5vw, 4.4rem); letter-spacing: -.055em; text-transform: none; }
+        .section-title::after { background: linear-gradient(to right, var(--border), transparent); }
+        .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+        .filter-btn.active { background: var(--ink); color: var(--snow); border-color: var(--ink); }
+        .product-card { background: transparent; border-color: var(--border); color: var(--text-primary); cursor: pointer; }
+        .product-card:hover { border-color: rgba(24,25,23,.52); }
+        .product-img-wrapper { background: #d9d6ce; }
+        .product-img-wrapper img { mix-blend-mode: multiply; }
+        .product-info { padding: 19px 2px 4px; }
+        .product-brand, .product-meta, .product-meta span { color: var(--text-secondary); }
+        .product-meta span { background: transparent; border-color: var(--border); }
+        .product-footer { border-color: var(--border); }
+        .product-price { font-family: var(--font-body); font-size: .78rem; letter-spacing: .04em; }
+        .nr-tag { background: rgba(25,26,24,.94); color: var(--snow); border-color: var(--silver); }
+        .stamp { background: #191a18; color: #efede7; }
+        #the-few { background: #20211f; color: #efede7; }
+        #the-few .section-title::after { background: linear-gradient(to right, rgba(239,237,231,.25), transparent); }
+        .few-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, .7fr); gap: 7vw; align-items: end; }
+        .few-kicker { color: var(--silver); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 18px; }
+        .few-copy { color: #b6b5ae; max-width: 490px; font-size: .95rem; line-height: 1.8; }
+        .few-empty { padding: 26px 0; border-top: 1px solid rgba(239,237,231,.24); color: #efede7; font-family: var(--font-display); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+        #nr-index { background: #c4c8c9; }
+        #nr-index .index-card { background: rgba(255,254,250,.58); border-color: rgba(24,25,23,.16); }
+        #nr-index .index-number { color: var(--silver-dark); }
+        #nr-index .index-card:hover { border-color: var(--silver-dark); }
+        #archived { background: #e4e1d9; }
+        .archived-card { opacity: .72; }
+        #sobre { background: #efede7 !important; }
+        #sobre img { mix-blend-mode: multiply; }
+        #faq { background: #191a18; color: #efede7; }
+        #faq .section-title::after, #faq .accordion-item { border-color: rgba(239,237,231,.2); }
+        #faq .accordion-header, #faq .accordion-content { color: #b6b5ae; }
+        #contato { background: var(--cement); }
+        footer { background: #191a18; color: #efede7; border-color: rgba(239,237,231,.16); }
+        footer .logo { color: #efede7; }
+        .footer-slogan { color: #a5a49d; }
+        .footer-the-few { color: #77776f; }
+        .footer-legal { color: #77776f; }
+        .product-modal { color: var(--text-primary); }
+        .product-modal-panel { background: #efede7; }
+        .modal-close { color: var(--text-primary); border-color: var(--border); }
+        .modal-main-image, .modal-thumb img { mix-blend-mode: multiply; }
+        .modal-spec { border-color: var(--border); }
+        .modal-spec dd, .modal-description { color: var(--text-secondary); }
+        .product-choice { width:min(100%,280px); min-height:42px; padding:8px 10px; color:#191a18; background:#fffefa; border:1px solid #9b9b96; }
+        .modal-action[aria-disabled="true"] { opacity:.5; pointer-events:none; }
+        #back-to-top { background: #191a18; border-color: #191a18; cursor: pointer; }
+        #back-to-top svg { fill: #efede7; }
+        @media (max-width: 768px) {
+            .nav-links { background: #efede7; }
+            #hero { min-height: 88svh; align-items: flex-end; }
+            .hero-bg { inset: 0; background-position: 58% center; }
+            .hero-overlay { background: linear-gradient(0deg, rgba(196,197,194,.98) 0%, rgba(196,197,194,.85) 35%, rgba(196,197,194,.05) 100%); }
+            .hero-content { width: 100%; padding: 0 7vw 15vh; }
+            .hero-content h1 { font-size: clamp(3.4rem, 17vw, 6rem); }
+            .hero-content p { max-width: 290px; font-size: .72rem; margin: 20px 0 26px; }
+            .scroll-indicator { display: none; }
+            .few-inner { grid-template-columns: 1fr; gap: 28px; }
+            .section-banner img { aspect-ratio:4/5; object-fit:cover; }
+            .product-choice { min-height:44px; width:100%; }
+            .archived-link { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+            .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+            .product-info { padding-top: 14px; }
+            .product-meta { gap: 5px; }
+            .product-meta span { padding: 3px 5px; font-size: .58rem; }
+            .product-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+        }
+        @media (max-width: 380px) { .catalog-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+
+    <!-- ── LOADER ──────────────────────────────────────────────── -->
+    <div id="loader" aria-hidden="true">
+        <div class="loader-nr">NR</div>
+        <div class="loader-divider"></div>
+        <div class="loader-supply">Supply</div>
+    </div>
+
+    <!-- ── HEADER ──────────────────────────────────────────────── -->
+    <header id="navbar">
+        <a href="#hero" class="logo text-metallic">NR</a>
+
+        <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
+            <a href="#catalogo">Essentials</a>
+            <a href="#the-few">THE FEW</a>
+            <a href="#nr-index">NR Index</a>
+            <a href="#archived">Archived</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <button class="menu-toggle" id="menu-toggle"
+                aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- ── HERO ────────────────────────────────────────────────── -->
+    <section id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content reveal">
+            
+            <h1 class="font-display">NR<br>SUPPLY</h1>
+            <p>Vista o que poucos possuem.</p>
+            <a href="#catalogo" class="btn">Descobrir Essentials</a>
+        </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ── MANIFESTO ───────────────────────────────────────────── -->
+    <section id="manifesto" class="section-padding">
+        <div class="container text-center reveal">
+            <p class="manifesto-text">
+                Não somos uma loja comum. Cada peça é <em>selecionada</em>.
+                Não existe reposição. Quando acaba, <em>acaba</em>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── CATÁLOGO ────────────────────────────────────────────── -->
+    <section id="catalogo" class="section-padding">
+        <div class="container">
+            <h2 class="sr-only">Essentials · Linha permanente</h2><picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_essentials/NR_essentials-completo_mobile_1080x1350.png"><img src="banners-logo/banners_essentials/NR_essentials-completo_desktop_1920x800.png" alt="NR Supply Essentials — linha permanente"></picture>
+            
+
+            <div class="filters reveal" id="catalog-filters" aria-label="Filtrar produtos por marca"></div>
+
+            <div class="catalog-grid" id="catalog-grid" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <section id="the-few" class="section-padding">
+        <div class="container few-inner">
+            <picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_02_the-few_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_02_the-few_desktop_1920x800.png" alt="NR Supply — THE FEW"></picture>
+            <div>
+                <p class="few-kicker">Curadoria rara · THE FEW</p>
+                <h2 class="section-title reveal">Encontradas em<br>poucas unidades.</h2>
+                <p class="few-copy">Uma seleção especial para peças raras, de arquivo e colaborações. Itens só aparecem aqui quando disponibilidade e informações estiverem confirmadas.</p>
+            </div>
+            <div>
+                <div class="catalog-grid" id="few-grid" aria-live="polite" hidden></div>
+                <p class="few-empty" id="few-status">Nenhuma peça rara disponível no momento.</p>
+                <a href="#archived" class="btn archived-link">Ver peças arquivadas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NR INDEX™ ───────────────────────────────────────────── -->
+    <section id="nr-index" class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title reveal" style="justify-content:center">NR Index™</h2>
+            <p class="index-intro reveal">
+                Nosso sistema proprietário de classificação de raridade.
+                Indica o nível de disponibilidade e a previsibilidade de
+                retorno de cada peça.
+            </p>
+
+            <div class="index-grid">
+                <div class="index-card reveal" style="transition-delay: 0.08s;">
+                    <span class="index-number font-display">333</span>
+                    <div class="index-name">Selected</div>
+                </div>
+                <div class="index-card reveal" style="transition-delay: 0.16s;">
+                    <span class="index-number font-display">555</span>
+                    <div class="index-name">Scarce</div>
+                </div>
+                <div class="index-card reveal" style="transition-delay: 0.24s;">
+                    <span class="index-number font-display">777</span>
+                    <div class="index-name">Legacy</div>
+                </div>
+                <div class="index-card endgame reveal" style="transition-delay: 0.32s;">
+                    <span class="index-number font-display">999</span>
+                    <div class="index-name">Endgame</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ARCHIVED ────────────────────────────────────────────── -->
+    <section id="archived" class="section-padding">
+        <div class="container">
+            <h2 class="sr-only">Archived</h2><picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_03_archived_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_03_archived_desktop_1920x800.png" alt="NR Supply — peças archived"></picture>
+
+            <div class="catalog-grid" id="archived-grid" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- ── SOBRE ────────────────────────────────────────────────── -->
+    <section id="sobre" class="section-padding" style="background: var(--surface);">
+        <div class="container about-grid">
+            <div class="about-img reveal">
+                <img src="imagens-logo-nr/logo-deitada.jpg"
+                     alt="Curadoria NR Supply" loading="lazy" style="border: 1px solid var(--border);">
+            </div>
+            <div class="about-text reveal" style="transition-delay: 0.15s;">
+                <h2 class="font-display">A Arte da <span class="text-metallic">Curadoria</span></h2>
+                <p>Nascemos da frustração com o mercado de massa. A NR Supply é um cofre para entusiastas, onde cada costura, tag e desgaste conta uma história.</p>
+                <p>Nosso processo de autenticação é rigoroso. Não vendemos roupas; transferimos custódia de artefatos culturais modernos.</p>
+
+                <div class="about-features">
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        100% Originalidade Garantida
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                        Procedência Verificada
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+                        Curadoria Exclusiva
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ──────────────────────────────────────────────────── -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal" style="justify-content: center;">FAQ</h2>
+
+            <div class="accordion reveal">
+                <div class="accordion-item">
+                    <button class="accordion-header" id="faq-originalidade" aria-expanded="false" aria-controls="faq-panel-originalidade">
+                        Todos os produtos são originais?
+                        <span class="accordion-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-body" id="faq-panel-originalidade" role="region" aria-labelledby="faq-originalidade">
+                        <div class="accordion-content">
+                            Sim. Absolutamente todas as peças passam por um rigoroso processo de autenticação (Legit Check) interno antes de serem listadas. A NR Supply tem tolerância zero com réplicas.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" id="faq-envios" aria-expanded="false" aria-controls="faq-panel-envios">
+                        Vocês fazem envios para todo o Brasil?
+                        <span class="accordion-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-body" id="faq-panel-envios" role="region" aria-labelledby="faq-envios">
+                        <div class="accordion-content">
+                            Sim, enviamos para todo o território nacional via transportadoras parceiras premium, com seguro total em todas as remessas.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" id="faq-reposicao" aria-expanded="false" aria-controls="faq-panel-reposicao">
+                        Existe reposição de peças?
+                        <span class="accordion-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-body" id="faq-panel-reposicao" role="region" aria-labelledby="faq-reposicao">
+                        <div class="accordion-content">
+                            Na grande maioria das vezes, não. Trabalhamos com peças de arquivo, raras ou deadstock. Cada item é único. Quando é vendido, vai direto para nossa aba "Archived".
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" id="faq-comprar" aria-expanded="false" aria-controls="faq-panel-comprar">
+                        Como comprar?
+                        <span class="accordion-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-body" id="faq-panel-comprar" role="region" aria-labelledby="faq-comprar">
+                        <div class="accordion-content">
+                            As compras são fechadas diretamente através de atendimento personalizado. Clique em "Ver detalhes" em qualquer produto ou entre em contato pelo nosso WhatsApp.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTATO ──────────────────────────────────────────────── -->
+    <section id="contato" class="section-padding">
+        <div class="container reveal">
+            <h2 class="font-display" style="font-size: clamp(2rem, 5vw, 3.5rem);">Concierge</h2>
+            <p style="color: var(--text-secondary); margin-top: 12px; letter-spacing: 0.06em;">
+                Atendimento restrito e personalizado.
+            </p>
+
+            <div class="contact-links">
+                <a href="#" class="btn" id="contact-instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="btn" id="contact-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="#" class="btn" id="contact-email" hidden>Email</a>
+                <a id="the-few-cta" class="btn the-few-cta" href="https://www.instagram.com/channel/XG01J5W5fMYeOJJ3/?fbclid=PAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAacMMpeYMi3DQcnBzZYza0ldxKAaGQlF2e_hHF-3tZX7XcIFX43f0w3PktIb8w_aem_MA3QhKRY7NAr7JOlYvNFZA" target="_blank" rel="noopener noreferrer">THE FEW</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── PRODUCT MODAL ─────────────────────────────────────────── -->
+    <div class="product-modal" id="product-modal" aria-hidden="true">
+        <div class="product-modal-backdrop" data-modal-close aria-hidden="true"></div>
+        <div class="product-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+            <button class="modal-close" type="button" data-modal-close aria-label="Fechar detalhes do produto">×</button>
+
+            <div class="modal-gallery">
+                <img class="modal-main-image" id="modal-main-image" src="" alt="">
+                <div class="modal-thumbnails" id="modal-thumbnails" aria-label="Imagens do produto"></div>
+            </div>
+
+            <div class="modal-details">
+                <p class="modal-eyebrow" id="modal-eyebrow"></p>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-price" id="modal-price"></p>
+
+                <dl class="modal-specs" id="modal-specs"></dl>
+
+                <h3 class="modal-description-title">Descrição</h3>
+                <p class="modal-description" id="modal-description"></p>
+
+                <a class="btn modal-action" id="modal-whatsapp" href="#" target="_blank" rel="noopener noreferrer">
+                    Comprar pelo WhatsApp
+                </a>
+                <p class="modal-archived-note" id="modal-archived-note" hidden>Peça arquivada e indisponível.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ───────────────────────────────────────────────── -->
+    <footer>
+        <div class="logo text-metallic">NR Supply</div>
+        <p class="footer-slogan">Vista o que poucos possuem.</p>
+        <p class="footer-the-few">— THE FEW —</p>
+        <p class="footer-legal">&copy; 2026 NR Supply Co. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+    </button>
+
+    <script src="products-data.js"></script>
+    <script type="module" src="/identity-callback.bundle.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        'use strict';
+
+        /* =========================================================
+           CONFIGURAÇÃO CENTRAL
+           Substitua whatsappNumber pelo número real, com DDI e DDD.
+           Exemplo: 5511999999999
+        ========================================================= */
+        const siteConfig = {
+            whatsappNumber: '5511980593910',
+            instagramUrl: 'https://www.instagram.com/nrsupplyco/',
+            email: 'nrsupply.coo@gmail.com'
+        };
+
+        /* Catalog records are maintained in products-data.js and editable in admin.html. */
+        let products = window.NR_PRODUCTS || [];
+        let productCatalogs = window.NR_CATALOGS || [];
+        try {
+            const response = await fetch('/api/catalog', {cache: 'no-store'});
+            if (response.ok) {
+                const sharedCatalog = await response.json();
+                if (Array.isArray(sharedCatalog.products)) products = sharedCatalog.products;
+                if (Array.isArray(sharedCatalog.catalogs)) productCatalogs = sharedCatalog.catalogs;
+            }
+        } catch (_) {}
+
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+        const isTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+        const money = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        const catalogGrid = document.getElementById('catalog-grid');
+        const fewGrid = document.getElementById('few-grid');
+        const fewStatus = document.getElementById('few-status');
+        const archivedGrid = document.getElementById('archived-grid');
+        const archivedSection = document.getElementById('archived');
+        const filtersContainer = document.getElementById('catalog-filters');
+        let activeFilter = 'all';
+
+        const slugify = value => value
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+
+        const formatPrice = price => price == null ? 'Consulte pelo WhatsApp' : Math.round(Number(price)).toLocaleString('pt-BR');
+        const choiceOptions = value => String(value || '').split(/\s*[\/,|]\s*/).map(item=>item.trim()).filter(Boolean);
+        const isRare = product => Number(product.nrIndex?.code || 0) >= 333;
+        const escapeHtml = value => String(value)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+
+        function productCardTemplate(product, index) {
+            const categories = product.filterBrands.map(slugify).join(' ');
+            const delay = Math.min(index * 0.08, 0.32).toFixed(2);
+            const archivedClass = product.archived ? ' archived-card' : '';
+            const priceLabel = product.archived ? 'Archived' : formatPrice(product.price);
+
+            return `
+                <article
+                    class="product-card tilt-card reveal${archivedClass}"
+                    data-product-id="${escapeHtml(product.id)}"
+                    data-category="${escapeHtml(categories)}"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Ver detalhes de ${escapeHtml([product.brand, product.name].filter(Boolean).join(' '))}"
+                    style="transition-delay: ${delay}s;"
+                >
+                    <div class="product-img-wrapper">
+                        ${product.archived ? '<div class="stamp">ARCHIVED</div>' : `<span class="nr-tag">${escapeHtml(product.nrIndex?.code || '')}</span>`}
+                        ${!product.archived ? '<div class="product-img-overlay"><span>Ver Detalhes</span></div>' : ''}
+                        <img src="${escapeHtml(product.images[0])}"
+                             alt="${escapeHtml(product.brand)} ${escapeHtml(product.name)}"
+                             loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        ${product.brand ? `<span class="product-brand">${escapeHtml(product.brand)}</span>` : ''}
+                        <h3 class="product-name">${escapeHtml(product.name)}</h3>
+                        ${!product.archived ? `
+                            <div class="product-meta">
+                                <span>Tam: ${escapeHtml(product.size)}</span>
+                                ${product.year && !/^unidentified\s*$/i.test(product.year) ? `<span>Ano: ${escapeHtml(product.year)}</span>` : ''}
+                                <span>Cond: ${escapeHtml(product.condition)}</span>
+                            </div>
+                        ` : ''}
+                        <div class="product-footer">
+                            <span class="product-price">${escapeHtml(priceLabel)}</span>
+                            <span class="btn-link">${product.archived ? 'Ver arquivo' : 'Ver detalhes'}</span>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        function getAvailableProducts() {
+            return products.filter(product => !product.archived && !isRare(product));
+        }
+
+        function getRareProducts() {
+            return products.filter(product => !product.archived && isRare(product));
+        }
+
+        function getArchivedProducts() {
+            return products.filter(product => product.archived);
+        }
+
+        function renderFilters() {
+            const labels = new Map();
+            getAvailableProducts().forEach(product => {
+                product.filterBrands.forEach(label => labels.set(slugify(label), label));
+            });
+
+            const buttons = [
+                ['all', 'Todos'],
+                ...[...labels.entries()].sort((a, b) => a[1].localeCompare(b[1], 'pt-BR'))
+            ];
+
+            filtersContainer.innerHTML = buttons.map(([slug, label]) => `
+                <button class="filter-btn${slug === activeFilter ? ' active' : ''}"
+                        type="button"
+                        data-filter="${escapeHtml(slug)}"
+                        aria-pressed="${slug === activeFilter}">
+                    ${escapeHtml(label)}
+                </button>
+            `).join('');
+        }
+
+        function renderCatalog() {
+            const available = getAvailableProducts().filter(product =>
+                activeFilter === 'all' || product.filterBrands.some(brand => slugify(brand) === activeFilter)
+            );
+
+            catalogGrid.innerHTML = available.length
+                ? available.map(productCardTemplate).join('')
+                : '<p class="catalog-empty">Nenhuma peça encontrada neste filtro.</p>';
+
+            const archived = getArchivedProducts();
+            archivedGrid.innerHTML = archived.map(productCardTemplate).join('');
+            archivedSection.hidden = archived.length === 0;
+
+            const rare = getRareProducts();
+            fewGrid.innerHTML = rare.map(productCardTemplate).join('');
+            fewGrid.hidden = rare.length === 0;
+            fewStatus.hidden = rare.length > 0;
+
+            observeNewReveals();
+            initializeTiltCards();
+            refreshCursorTargets();
+        }
+
+        filtersContainer.addEventListener('click', event => {
+            const button = event.target.closest('.filter-btn');
+            if (!button) return;
+
+            activeFilter = button.dataset.filter;
+            renderFilters();
+            renderCatalog();
+        });
+
+        /* =========================================================
+           MODAL DE PRODUTO
+        ========================================================= */
+        const modal = document.getElementById('product-modal');
+        const modalPanel = modal.querySelector('.product-modal-panel');
+        const modalMainImage = document.getElementById('modal-main-image');
+        const modalThumbnails = document.getElementById('modal-thumbnails');
+        const modalEyebrow = document.getElementById('modal-eyebrow');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalSpecs = document.getElementById('modal-specs');
+        const modalDescription = document.getElementById('modal-description');
+        const modalWhatsapp = document.getElementById('modal-whatsapp');
+        const modalArchivedNote = document.getElementById('modal-archived-note');
+        let lastFocusedElement = null;
+
+        function buildWhatsappUrl(product, choices = {}) {
+            const message = [
+                'Olá, NR Supply!',
+                'Tenho interesse em: ' + product.name,
+                ...(choices.size ? ['Tamanho: ' + choices.size] : product.size && choiceOptions(product.size).length === 1 ? ['Tamanho: ' + product.size] : []),
+                ...(choices.color ? ['Cor: ' + choices.color] : product.color && choiceOptions(product.color).length === 1 ? ['Cor: ' + product.color] : []),
+                'Pode me confirmar a disponibilidade?'
+            ].join('\n');
+
+            return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        function renderModalThumbnails(product) {
+            modalThumbnails.innerHTML = product.images.map((image, index) => `
+                <button class="modal-thumb${index === 0 ? ' active' : ''}"
+                        type="button"
+                        data-image-index="${index}"
+                        aria-label="Visualizar imagem ${index + 1} de ${product.images.length}">
+                    <img src="${escapeHtml(image)}" alt="" loading="lazy">
+                </button>
+            `).join('');
+
+            modalThumbnails.hidden = product.images.length <= 1;
+        }
+
+        function openProductModal(product) {
+            lastFocusedElement = document.activeElement;
+            modal.dataset.productId = product.id;
+            modalEyebrow.textContent = `${product.brand ? `${product.brand} • ` : ''}${product.collection}`;
+            modalTitle.textContent = product.name;
+            modalPrice.textContent = formatPrice(product.price);
+            modalDescription.textContent = product.description;
+            modalMainImage.src = product.images[0];
+            modalMainImage.alt = [product.brand, product.name].filter(Boolean).join(' ');
+
+            const specs = [
+                ['Piece No.', product.piece],
+                ...(product.nrIndex ? [['NR Index™', `${product.nrIndex.code} • ${product.nrIndex.name}`]] : []),
+                ...(product.size ? (product.archived ? [['Tamanho', product.size]] : [['Tamanho', choiceOptions(product.size), 'modal-size']]) : []),
+                ['Ano', product.year],
+                ['Estado', product.condition],
+                ...(product.color ? (product.archived ? [['Cor', product.color]] : [['Cor', choiceOptions(product.color), 'modal-color']]) : [])
+            ].filter(([, value]) => value && !/^unidentified\s*$/i.test(String(value)));
+
+            modalSpecs.innerHTML = specs.map(([label, value, selectId]) => `
+                <div class="modal-spec">
+                    <dt>${escapeHtml(label)}</dt>
+                    <dd>${Array.isArray(value) ? `<select class="product-choice" id="${selectId}" aria-label="Escolha ${escapeHtml(label.toLowerCase())}"><option value="">Selecione ${escapeHtml(label.toLowerCase())}</option>${value.map(option=>`<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join('')}</select>` : escapeHtml(value)}</dd>
+                </div>
+            `).join('');
+
+            renderModalThumbnails(product);
+
+            if (product.archived) {
+                modalWhatsapp.setAttribute('aria-disabled', 'true');
+                modalWhatsapp.removeAttribute('href');
+                modalWhatsapp.textContent = 'Indisponível';
+                modalArchivedNote.hidden = false;
+            } else {
+                modalWhatsapp.removeAttribute('aria-disabled');
+                modalWhatsapp.textContent = 'Comprar pelo WhatsApp';
+                const updateOrderLink = () => { const size=modalSpecs.querySelector('#modal-size')?.value || ''; const color=modalSpecs.querySelector('#modal-color')?.value || ''; const needsSize=!!modalSpecs.querySelector('#modal-size'); const needsColor=!!modalSpecs.querySelector('#modal-color'); const ready=(!needsSize||!!size)&&(!needsColor||!!color); if(ready){modalWhatsapp.href=buildWhatsappUrl(product,{size,color});modalWhatsapp.removeAttribute('aria-disabled');}else{modalWhatsapp.removeAttribute('href');modalWhatsapp.setAttribute('aria-disabled','true');} };
+                modalSpecs.querySelectorAll('.product-choice').forEach(select=>select.addEventListener('change',updateOrderLink)); updateOrderLink();
+                modalArchivedNote.hidden = true;
+            }
+
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            modalPanel.focus({ preventScroll: true });
+        }
+
+        function closeProductModal() {
+            if (!modal.classList.contains('open')) return;
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            lastFocusedElement?.focus({ preventScroll: true });
+        }
+
+        function activateProductFromElement(element) {
+            const card = element.closest('[data-product-id]');
+            if (!card) return;
+            const product = products.find(item => item.id === card.dataset.productId);
+            if (product) openProductModal(product);
+        }
+
+        [catalogGrid, fewGrid, archivedGrid].forEach(grid => {
+            grid.addEventListener('click', event => activateProductFromElement(event.target));
+            grid.addEventListener('keydown', event => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                const card = event.target.closest('[data-product-id]');
+                if (!card) return;
+                event.preventDefault();
+                activateProductFromElement(card);
+            });
+        });
+
+        modal.addEventListener('click', event => {
+            if (event.target.closest('[data-modal-close]')) closeProductModal();
+        });
+
+        modalThumbnails.addEventListener('click', event => {
+            const thumb = event.target.closest('.modal-thumb');
+            if (!thumb) return;
+            const product = products.find(item => item.id === modal.dataset.productId);
+            if (!product) return;
+
+            const index = Number(thumb.dataset.imageIndex);
+            modalMainImage.src = product.images[index];
+            modalThumbnails.querySelectorAll('.modal-thumb').forEach(item => {
+                item.classList.toggle('active', item === thumb);
+            });
+        });
+
+        function trapFocus(event, container) {
+            const focusable = [...container.querySelectorAll(
+                'a[href]:not([aria-disabled="true"]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            )].filter(element => !element.hidden && element.offsetParent !== null);
+
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                if (modal.classList.contains('open')) closeProductModal();
+                else if (navLinks.classList.contains('nav-open')) closeMenu();
+            }
+
+            if (event.key === 'Tab' && modal.classList.contains('open')) {
+                trapFocus(event, modalPanel);
+            }
+        });
+
+        /* =========================================================
+           LOADER
+        ========================================================= */
+        const loader = document.getElementById('loader');
+        let loaderHidden = false;
+
+        function hideLoader() {
+            if (loaderHidden) return;
+            loaderHidden = true;
+            loader.classList.add('hidden');
+            document.body.classList.add('ready');
+            try { sessionStorage.setItem('nr-loader-seen', '1'); } catch (_) {}
+        }
+
+        if (document.documentElement.classList.contains('skip-loader')) {
+            hideLoader();
+        } else {
+            const loaderStartedAt = performance.now();
+            const completeLoader = () => {
+                const elapsed = performance.now() - loaderStartedAt;
+                window.setTimeout(hideLoader, Math.max(0, 900 - elapsed));
+            };
+
+            if (document.readyState === 'complete') completeLoader();
+            else window.addEventListener('load', completeLoader, { once: true });
+
+            window.setTimeout(hideLoader, 1800);
+        }
+
+        /* =========================================================
+           CURSOR
+        ========================================================= */
+        const cursor = document.getElementById('cursor');
+        let cursorFrame = null;
+        let cursorX = -100;
+        let cursorY = -100;
+
+        if (!isTouch && !prefersReducedMotion) {
+            document.addEventListener('mousemove', event => {
+                cursorX = event.clientX;
+                cursorY = event.clientY;
+
+                if (cursorFrame) return;
+                cursorFrame = requestAnimationFrame(() => {
+                    cursor.style.setProperty('--cursor-x', `${cursorX}px`);
+                    cursor.style.setProperty('--cursor-y', `${cursorY}px`);
+                    cursorFrame = null;
+                });
+            }, { passive: true });
+
+            document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+            document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+        }
+
+        function refreshCursorTargets() {
+            if (isTouch || prefersReducedMotion) return;
+            document.querySelectorAll(
+                'a, button, .product-card, .collection-card, .index-card, .filter-btn'
+            ).forEach(element => {
+                if (element.dataset.cursorReady) return;
+                element.dataset.cursorReady = 'true';
+                element.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                element.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+            });
+        }
+
+        /* =========================================================
+           NAVBAR E VOLTAR AO TOPO
+        ========================================================= */
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            const past = window.scrollY > 60;
+            navbar.classList.toggle('scrolled', past);
+            backToTop.classList.toggle('visible', past);
+        }, { passive: true });
+
+        backToTop.addEventListener('click', () => window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        }));
+
+        /* =========================================================
+           MENU MOBILE
+        ========================================================= */
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        let menuPreviousFocus = null;
+
+        function openMenu() {
+            menuPreviousFocus = document.activeElement;
+            navLinks.classList.add('nav-open');
+            menuToggle.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.setAttribute('aria-label', 'Fechar menu');
+            document.body.classList.add('menu-open');
+            navLinks.querySelector('a')?.focus();
+        }
+
+        function closeMenu({ restoreFocus = true } = {}) {
+            navLinks.classList.remove('nav-open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Abrir menu');
+            document.body.classList.remove('menu-open');
+            if (restoreFocus) menuPreviousFocus?.focus({ preventScroll: true });
+        }
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.contains('nav-open') ? closeMenu() : openMenu();
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => closeMenu({ restoreFocus: false }));
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Tab' && navLinks.classList.contains('nav-open') && !modal.classList.contains('open')) {
+                const focusable = [menuToggle, ...navLinks.querySelectorAll('a')];
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+        function observeNewReveals() {
+            document.querySelectorAll('.reveal:not([data-reveal-ready])').forEach(element => {
+                element.dataset.revealReady = 'true';
+                if (prefersReducedMotion) element.classList.add('active');
+                else revealObs.observe(element);
+            });
+        }
+
+        /* =========================================================
+           FAQ ACCORDION
+        ========================================================= */
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const isOpen = this.classList.contains('active');
+
+                document.querySelectorAll('.accordion-header.active').forEach(other => {
+                    other.classList.remove('active');
+                    other.setAttribute('aria-expanded', 'false');
+                    other.nextElementSibling.style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    this.classList.add('active');
+                    this.setAttribute('aria-expanded', 'true');
+                    this.nextElementSibling.style.maxHeight = `${this.nextElementSibling.scrollHeight}px`;
+                }
+            });
+        });
+
+        /* =========================================================
+           TILT EFFECT
+        ========================================================= */
+        function initializeTiltCards() {
+            if (isTouch || prefersReducedMotion) return;
+
+            document.querySelectorAll('.tilt-card:not([data-tilt-ready])').forEach(card => {
+                card.dataset.tiltReady = 'true';
+                let rafId = null;
+                let resetTimer = null;
+
+                card.addEventListener('mouseenter', () => {
+                    if (resetTimer) {
+                        clearTimeout(resetTimer);
+                        resetTimer = null;
+                    }
+                    card.style.transition = 'border-color 0.4s ease';
+                });
+
+                card.addEventListener('mousemove', event => {
+                    if (rafId) return;
+                    rafId = requestAnimationFrame(() => {
+                        const rect = card.getBoundingClientRect();
+                        const rotX = ((event.clientY - rect.top - rect.height / 2) / rect.height) * -8;
+                        const rotY = ((event.clientX - rect.left - rect.width / 2) / rect.width) * 8;
+                        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02,1.02,1.02)`;
+                        rafId = null;
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (rafId) {
+                        cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
+                    if (resetTimer) clearTimeout(resetTimer);
+
+                    card.style.transition = 'transform 0.65s var(--ease-out), border-color 0.4s ease';
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+                    resetTimer = window.setTimeout(() => {
+                        card.style.transition = '';
+                        resetTimer = null;
+                    }, 700);
+                });
+            });
+        }
+
+        /* =========================================================
+           NAVEGAÇÃO ATIVA
+        ========================================================= */
+        const navItems = [...document.querySelectorAll('.nav-links a')];
+        const observedSections = navItems
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+        const visibilityBySection = new Map(observedSections.map(section => [section.id, 0]));
+
+        const navObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                visibilityBySection.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+            });
+
+            const activeEntry = [...visibilityBySection.entries()]
+                .sort((a, b) => b[1] - a[1])
+                .find(([, ratio]) => ratio > 0);
+
+            navItems.forEach(link => {
+                const isActive = Boolean(activeEntry && link.getAttribute('href') === `#${activeEntry[0]}`);
+                link.classList.toggle('active', isActive);
+                if (isActive) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+            });
+        }, {
+            rootMargin: '-25% 0px -55% 0px',
+            threshold: [0, 0.1, 0.25, 0.5, 0.75]
+        });
+
+        observedSections.forEach(section => navObs.observe(section));
+
+        /* =========================================================
+           CONTATO
+        ========================================================= */
+        const contactInstagram = document.getElementById('contact-instagram');
+        const contactWhatsapp = document.getElementById('contact-whatsapp');
+        const contactEmail = document.getElementById('contact-email');
+
+        contactInstagram.href = siteConfig.instagramUrl;
+        contactWhatsapp.href = `https://wa.me/${siteConfig.whatsappNumber}`;
+
+        if (siteConfig.email) {
+            contactEmail.hidden = false;
+            contactEmail.href = `mailto:${siteConfig.email}`;
+        }
+
+        /* =========================================================
+           INICIALIZAÇÃO
+        ========================================================= */
+        renderFilters();
+        renderCatalog();
+        observeNewReveals();
+        initializeTiltCards();
+        refreshCursorTargets();
+    });
+    </script>
+</body>
+</html>

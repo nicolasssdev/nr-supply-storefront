@@ -1,0 +1,20 @@
+{
+  "name": "nr-supply-storefront",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "esbuild public/identity-callback.js --bundle --format=esm --platform=browser --outfile=public/identity-callback.bundle.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9",
+    "@netlify/identity": "^2.0.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.0.0",
+    "esbuild": "^0.25.0"
+  }
+}
