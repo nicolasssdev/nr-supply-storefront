@@ -8,7 +8,7 @@ const defaultETag = '"static-default"';
 const maxCatalogBytes = 4 * 1024 * 1024;
 
 async function getCurrentCatalog(request) {
-  const saved = await store.getWithMetadata(catalogKey, { type: 'json' });
+  const saved = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
   if (saved) return { catalog: saved.data, etag: saved.etag, source: 'blobs' };
 
   const url = new URL('/products-data.json', request.url);
@@ -75,7 +75,7 @@ export default async function handler(request) {
 
   const expectedETag = request.headers.get('if-match');
   try {
-    const current = await store.getWithMetadata(catalogKey, { type: 'json' });
+    const current = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
     const actualETag = current?.etag || defaultETag;
     if (!expectedETag || expectedETag !== actualETag) return error('O catálogo mudou em outro painel. Recarregue e tente novamente.', 409);
 
