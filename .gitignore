@@ -1,0 +1,4 @@
+node_modules/
+.netlify/
+public/identity-callback.bundle.js
+npm-debug.log*

@@ -29,7 +29,8 @@ export default async function handler(request) {
           'X-Content-Type-Options': 'nosniff',
         },
       });
-    } catch {
+    } catch (cause) {
+      console.error('[images] GET failed while reading Netlify Blobs.', cause);
       return error('Não foi possível carregar a imagem.', 503);
     }
   }
@@ -57,7 +58,8 @@ export default async function handler(request) {
       onlyIfNew: true,
     });
     return json({ url: `/api/images/${key}` }, 201);
-  } catch {
+  } catch (cause) {
+    console.error('[images] POST failed while writing to Netlify Blobs.', cause);
     return error('Não foi possível guardar a imagem no Netlify Blobs.', 503);
   }
 }

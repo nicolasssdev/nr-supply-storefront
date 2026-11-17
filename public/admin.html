@@ -322,7 +322,7 @@
       try {
         const uploaded = await Promise.all(files.map(uploadImage));
         const paths=byId('image-paths').value.split(/\r?\n/).map(item=>item.trim()).filter(Boolean); byId('image-paths').value=[...paths,...uploaded].join('\n'); renderImagePreview(); setStatus(`${uploaded.length} imagem(ns) enviadas. Salve o produto para associá-las ao catálogo.`);
-      } catch (_) { setStatus('Não foi possível processar uma das imagens. Tente JPG, PNG ou WebP.', true); }
+      } catch (error) { setStatus(error.message || 'Não foi possível processar uma das imagens. Tente JPG, PNG ou WebP.', true); }
       event.target.value = '';
     });
 
@@ -439,9 +439,26 @@
 
     function showLogin(message='') { byId('login-panel').hidden=false; byId('admin-app').hidden=true; byId('logout-button').hidden=true; byId('login-status').textContent=message; }
     async function loadCatalog() { const {response,data}=await api('/api/catalog',{cache:'no-store'}); serverETag=data.version||response.headers.get('ETag')||''; products=data.products||[]; catalogs=data.catalogs||[]; banners=clone(data.banners||defaultBanners); savedProducts=clone(products); savedCatalogs=[...catalogs]; savedBanners=clone(banners); byId('admin-app').hidden=false; byId('login-panel').hidden=true; byId('logout-button').hidden=false; renderCatalogs(); renderList(); renderBannerFields(); setForm(products[0]||null); }
-    byId('login-form').addEventListener('submit',async event=>{event.preventDefault();byId('login-status').textContent='Conectando…';try{await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:byId('login-email').value,password:byId('login-password').value})});const {data:session}=await api('/api/session',{cache:'no-store'});byId('admin-user').textContent=session.email||'ADMIN';await loadCatalog();}catch(error){showLogin(error.message);}});
+    byId('login-form').addEventListener('submit',async event=>{
+      event.preventDefault();
+      byId('login-status').textContent='Conectando…';
+      try {
+        await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:byId('login-email').value,password:byId('login-password').value})});
+        const {data:session}=await api('/api/session',{cache:'no-store'});
+        byId('admin-user').textContent=session.email||'ADMIN';
+        try { await loadCatalog(); }
+        catch(error) { showLogin(`Acesso confirmado, mas não foi possível carregar o catálogo. ${error.message}`); }
+      } catch(error) { showLogin(error.message); }
+    });
     byId('logout-button').addEventListener('click',async()=>{try{await api('/api/logout',{method:'POST'});}finally{showLogin('Sessão encerrada.');}});
-    async function init(){try{const {data}=await api('/api/session',{cache:'no-store'});byId('admin-user').textContent=data.email||'ADMIN';await loadCatalog();}catch(_){showLogin('Entre para editar o catálogo.');}}
+    async function init(){
+      let session;
+      try { ({data:session}=await api('/api/session',{cache:'no-store'})); }
+      catch(error) { showLogin(error.message); return; }
+      byId('admin-user').textContent=session.email||'ADMIN';
+      try { await loadCatalog(); }
+      catch(error) { showLogin(`Sessão autenticada, mas não foi possível carregar o catálogo. ${error.message}`); }
+    }
     init();
   })();
   </script>

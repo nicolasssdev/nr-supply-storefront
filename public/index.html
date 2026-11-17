@@ -875,20 +875,84 @@
             background: var(--surface-2);
             padding: 20px;
         }
+        .modal-image-stage {
+            position: relative;
+            width: 100%;
+            height: min(72dvh, 640px);
+            min-height: 320px;
+            overflow: hidden;
+            background: var(--surface-2);
+            touch-action: pan-y;
+        }
         .modal-main-image {
             width: 100%;
-            aspect-ratio: 9 / 16;
-            object-fit: cover;
-            background: var(--bg);
+            height: 100%;
+            object-fit: contain;
+            background: var(--surface-2);
         }
-        .product-modal-panel.archived-product .modal-main-image { aspect-ratio: 12 / 5; }
-        .modal-thumbnails {
+        .modal-image-control {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            width: 46px;
+            height: 46px;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            place-items: center;
+            transform: translateY(-50%);
+            border: 1px solid rgba(25,26,24,.24);
+            border-radius: 50%;
+            background: rgba(255,254,250,.9);
+            color: var(--ink);
+            font-size: 2rem;
+            line-height: 1;
+            box-shadow: 0 2px 12px rgba(0,0,0,.12);
+            transition: background var(--t-base), color var(--t-base), opacity var(--t-base);
+        }
+        .modal-image-control:hover,
+        .modal-image-control:focus-visible { background: var(--ink); color: var(--snow); outline: none; }
+        .modal-image-control[hidden],
+        .modal-image-counter[hidden],
+        .modal-gallery-hint[hidden] { display: none; }
+        .modal-image-control.previous { left: 12px; }
+        .modal-image-control.next { right: 12px; }
+        .modal-image-counter {
+            position: absolute;
+            z-index: 2;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 54px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 999px;
+            background: rgba(25,26,24,.74);
+            color: var(--snow);
+            text-align: center;
+            font-size: .68rem;
+            letter-spacing: .08em;
+            font-variant-numeric: tabular-nums;
+        }
+        .modal-gallery-hint {
+            margin-top: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+            font-size: .62rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .modal-thumbnails {
+            display: flex;
+            overflow-x: auto;
+            overscroll-behavior-inline: contain;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
             gap: 10px;
             margin-top: 12px;
+            padding: 2px 1px 6px;
         }
+        .modal-thumbnails[hidden] { display: none; }
         .modal-thumb {
+            flex: 0 0 68px;
             border: 1px solid transparent;
             opacity: 0.55;
             transition: opacity var(--t-base), border-color var(--t-base);
@@ -986,13 +1050,18 @@
             .product-modal { padding: 0; align-items: end; }
             .product-modal-panel {
                 width: 100%;
-                max-height: 94dvh;
+                max-height: 96dvh;
                 grid-template-columns: 1fr;
+                border-radius: 16px 16px 0 0;
+                padding-bottom: env(safe-area-inset-bottom);
             }
-            .modal-gallery { padding: 14px; }
-            .product-modal-panel.archived-product .modal-main-image { aspect-ratio: 4 / 5; }
-            .modal-details { padding: 34px 22px 30px; }
+            .modal-gallery { padding: 12px 14px; }
+            .modal-image-stage { height: min(48dvh, 430px); min-height: 220px; }
+            .modal-details { padding: 24px 22px 30px; }
             .modal-close { top: 12px; right: 12px; }
+            .modal-image-control { width: 48px; height: 48px; }
+            .modal-thumbnails { gap: 8px; }
+            .modal-thumb { flex-basis: 60px; }
         }
 
         /* =========================================================
@@ -1286,26 +1355,83 @@
         #back-to-top { background: #191a18; border-color: #191a18; cursor: pointer; }
         #back-to-top svg { fill: #efede7; }
         @media (max-width: 768px) {
-            .nav-links { background: #efede7; }
+            #navbar { padding: calc(14px + env(safe-area-inset-top)) 5% 14px; }
+            #navbar.scrolled { padding: calc(10px + env(safe-area-inset-top)) 5% 10px; }
+            .menu-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+            .nav-links {
+                top: 0;
+                right: 0;
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                padding: calc(88px + env(safe-area-inset-top)) 8% calc(28px + env(safe-area-inset-bottom));
+                background: #efede7;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                transform: translate3d(100%,0,0);
+                transition: transform var(--t-smooth);
+            }
+            .nav-links.nav-open { right: 0; transform: translate3d(0,0,0); }
+            .nav-links a {
+                width: 100%;
+                min-height: 58px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(24,25,23,.12);
+                font-size: .95rem;
+                letter-spacing: .14em;
+            }
+            .nav-links a::after { display: none; }
+            section[id] { scroll-margin-top: 78px; }
             #hero { min-height: 88svh; align-items: flex-end; }
             .hero-bg { inset: 0; }
             .hero-bg img { object-position: 58% center; }
             .hero-overlay { background: linear-gradient(0deg, rgba(196,197,194,.98) 0%, rgba(196,197,194,.85) 35%, rgba(196,197,194,.05) 100%); }
-            .hero-content { width: 100%; padding: 0 7vw 15vh; }
+            .hero-content { width: 100%; padding: 0 7vw calc(12vh + env(safe-area-inset-bottom)); }
             .hero-content h1 { font-size: clamp(3.4rem, 17vw, 6rem); }
             .hero-content p { max-width: 290px; font-size: .72rem; margin: 20px 0 26px; }
+            .hero-content .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 13px 18px; }
             .scroll-indicator { display: none; }
+            :root { --section-v: clamp(56px, 12vw, 76px); }
             .few-inner { grid-template-columns: 1fr; gap: 28px; }
             .section-banner img { aspect-ratio:4/5; object-fit:cover; }
             .product-choice { min-height:44px; width:100%; }
             .archived-link { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+            .filters {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overscroll-behavior-inline: contain;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x proximity;
+                padding: 2px 0 8px;
+                margin-bottom: 28px;
+            }
+            .filters::-webkit-scrollbar { display: none; }
+            .filter-btn { flex: 0 0 auto; min-height: 44px; padding: 10px 14px; scroll-snap-align: start; }
             .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
             .product-info { padding-top: 14px; }
             .product-meta { gap: 5px; }
             .product-meta span { padding: 3px 5px; font-size: .58rem; }
             .product-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+            .btn-link { min-height: 40px; display: inline-flex; align-items: center; }
+            .contact-links { gap: 10px; margin-top: 28px; }
+            .contact-links .btn { width: min(100%, 360px); min-height: 48px; display: inline-flex; justify-content: center; align-items: center; }
+            .accordion-header { min-height: 60px; padding: 18px 0; font-size: .86rem; }
+            #back-to-top { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); width: 44px; height: 44px; }
         }
-        @media (max-width: 380px) { .catalog-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 380px) {
+            .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 8px; }
+            .product-info { padding-top: 12px; }
+            .product-name { font-size: .78rem; line-height: 1.35; margin-bottom: 10px; }
+            .product-meta { gap: 4px; margin-bottom: 12px; }
+            .product-meta span { font-size: .53rem; padding: 3px 4px; }
+            .product-price { font-size: .72rem; }
+        }
     </style>
 </head>
 <body>
@@ -1546,7 +1672,13 @@
             <button class="modal-close" type="button" data-modal-close aria-label="Fechar detalhes do produto">×</button>
 
             <div class="modal-gallery">
-                <img class="modal-main-image" id="modal-main-image" src="" alt="">
+                <div class="modal-image-stage" id="modal-image-stage">
+                    <button class="modal-image-control previous" id="modal-image-previous" type="button" aria-label="Ver foto anterior" hidden>‹</button>
+                    <img class="modal-main-image" id="modal-main-image" src="" alt="">
+                    <button class="modal-image-control next" id="modal-image-next" type="button" aria-label="Ver próxima foto" hidden>›</button>
+                    <span class="modal-image-counter" id="modal-image-counter" role="status" aria-live="polite" hidden></span>
+                </div>
+                <p class="modal-gallery-hint" id="modal-gallery-hint" hidden>Deslize ou toque nas setas para ver outras fotos</p>
                 <div class="modal-thumbnails" id="modal-thumbnails" aria-label="Imagens do produto"></div>
             </div>
 
@@ -1768,6 +1900,11 @@
         const modal = document.getElementById('product-modal');
         const modalPanel = modal.querySelector('.product-modal-panel');
         const modalMainImage = document.getElementById('modal-main-image');
+        const modalImageStage = document.getElementById('modal-image-stage');
+        const modalPreviousImage = document.getElementById('modal-image-previous');
+        const modalNextImage = document.getElementById('modal-image-next');
+        const modalImageCounter = document.getElementById('modal-image-counter');
+        const modalGalleryHint = document.getElementById('modal-gallery-hint');
         const modalThumbnails = document.getElementById('modal-thumbnails');
         const modalEyebrow = document.getElementById('modal-eyebrow');
         const modalTitle = document.getElementById('modal-title');
@@ -1777,6 +1914,9 @@
         const modalWhatsapp = document.getElementById('modal-whatsapp');
         const modalArchivedNote = document.getElementById('modal-archived-note');
         let lastFocusedElement = null;
+        let modalImages = [];
+        let modalImageIndex = 0;
+        let imageSwipeStart = null;
 
         function buildWhatsappUrl(product, choices = {}) {
             const message = [
@@ -1790,17 +1930,35 @@
             return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
         }
 
-        function renderModalThumbnails(product) {
-            modalThumbnails.innerHTML = product.images.map((image, index) => `
+        function renderModalThumbnails(images) {
+            modalThumbnails.innerHTML = images.map((image, index) => `
                 <button class="modal-thumb${index === 0 ? ' active' : ''}"
                         type="button"
                         data-image-index="${index}"
-                        aria-label="Visualizar imagem ${index + 1} de ${product.images.length}">
+                        aria-pressed="${index === 0}"
+                        aria-label="Visualizar imagem ${index + 1} de ${images.length}">
                     <img src="${escapeHtml(image)}" alt="" loading="lazy">
                 </button>
             `).join('');
 
-            modalThumbnails.hidden = product.images.length <= 1;
+            modalThumbnails.hidden = images.length <= 1;
+        }
+
+        function showModalImage(index) {
+            if (!modalImages.length) return;
+            modalImageIndex = (index + modalImages.length) % modalImages.length;
+            modalMainImage.src = modalImages[modalImageIndex];
+            modalMainImage.alt = `${modalMainImage.dataset.productAlt} — foto ${modalImageIndex + 1} de ${modalImages.length}`;
+            modalImageCounter.textContent = `${modalImageIndex + 1} / ${modalImages.length}`;
+            modalPreviousImage.hidden = modalImages.length <= 1;
+            modalNextImage.hidden = modalImages.length <= 1;
+            modalImageCounter.hidden = modalImages.length <= 1;
+            modalGalleryHint.hidden = modalImages.length <= 1;
+            modalThumbnails.querySelectorAll('.modal-thumb').forEach((thumb, thumbIndex) => {
+                const active = thumbIndex === modalImageIndex;
+                thumb.classList.toggle('active', active);
+                thumb.setAttribute('aria-pressed', String(active));
+            });
         }
 
         function openProductModal(product) {
@@ -1811,8 +1969,8 @@
             modalTitle.textContent = product.name;
             modalPrice.textContent = formatPrice(product.price);
             modalDescription.textContent = product.description;
-            modalMainImage.src = product.images[0];
-            modalMainImage.alt = [product.brand, product.name].filter(Boolean).join(' ');
+            modalImages = Array.isArray(product.images) ? product.images.filter(image => typeof image === 'string' && image.trim()) : [];
+            modalMainImage.dataset.productAlt = [product.brand, product.name].filter(Boolean).join(' ');
 
             const specs = [
                 ['Piece No.', product.piece],
@@ -1830,7 +1988,18 @@
                 </div>
             `).join('');
 
-            renderModalThumbnails(product);
+            renderModalThumbnails(modalImages);
+            modalPanel.scrollTop = 0;
+            if (modalImages.length) {
+                showModalImage(0);
+            } else {
+                modalMainImage.removeAttribute('src');
+                modalMainImage.alt = modalMainImage.dataset.productAlt;
+                modalPreviousImage.hidden = true;
+                modalNextImage.hidden = true;
+                modalImageCounter.hidden = true;
+                modalGalleryHint.hidden = true;
+            }
 
             if (product.archived) {
                 modalWhatsapp.setAttribute('aria-disabled', 'true');
@@ -1881,17 +2050,26 @@
             if (event.target.closest('[data-modal-close]')) closeProductModal();
         });
 
+        modalPreviousImage.addEventListener('click', () => showModalImage(modalImageIndex - 1));
+        modalNextImage.addEventListener('click', () => showModalImage(modalImageIndex + 1));
+
+        modalImageStage.addEventListener('pointerdown', event => {
+            if (!modal.classList.contains('open') || event.pointerType === 'mouse' || !event.isPrimary) return;
+            imageSwipeStart = { x: event.clientX, y: event.clientY };
+        });
+        modalImageStage.addEventListener('pointerup', event => {
+            if (!imageSwipeStart) return;
+            const deltaX = event.clientX - imageSwipeStart.x;
+            const deltaY = event.clientY - imageSwipeStart.y;
+            imageSwipeStart = null;
+            if (Math.abs(deltaX) < 44 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+            showModalImage(modalImageIndex + (deltaX < 0 ? 1 : -1));
+        });
+        modalImageStage.addEventListener('pointercancel', () => { imageSwipeStart = null; });
+
         modalThumbnails.addEventListener('click', event => {
             const thumb = event.target.closest('.modal-thumb');
-            if (!thumb) return;
-            const product = products.find(item => item.id === modal.dataset.productId);
-            if (!product) return;
-
-            const index = Number(thumb.dataset.imageIndex);
-            modalMainImage.src = product.images[index];
-            modalThumbnails.querySelectorAll('.modal-thumb').forEach(item => {
-                item.classList.toggle('active', item === thumb);
-            });
+            if (thumb) showModalImage(Number(thumb.dataset.imageIndex));
         });
 
         function trapFocus(event, container) {
@@ -1916,6 +2094,11 @@
             if (event.key === 'Escape') {
                 if (modal.classList.contains('open')) closeProductModal();
                 else if (navLinks.classList.contains('nav-open')) closeMenu();
+            }
+
+            if (modal.classList.contains('open') && (event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !event.target.closest('select, input, textarea')) {
+                event.preventDefault();
+                showModalImage(modalImageIndex + (event.key === 'ArrowRight' ? 1 : -1));
             }
 
             if (event.key === 'Tab' && modal.classList.contains('open')) {
@@ -2011,10 +2194,20 @@
         ========================================================= */
         const menuToggle = document.getElementById('menu-toggle');
         const navLinks = document.getElementById('nav-links');
+        const mobileNavQuery = window.matchMedia('(max-width: 768px)');
         let menuPreviousFocus = null;
+
+        function updateMenuAccessibility(isOpen = navLinks.classList.contains('nav-open')) {
+            const hidden = mobileNavQuery.matches && !isOpen;
+            navLinks.inert = hidden;
+            navLinks.setAttribute('aria-hidden', String(hidden));
+        }
+
+        updateMenuAccessibility(false);
 
         function openMenu() {
             menuPreviousFocus = document.activeElement;
+            updateMenuAccessibility(true);
             navLinks.classList.add('nav-open');
             menuToggle.classList.add('active');
             menuToggle.setAttribute('aria-expanded', 'true');
@@ -2028,6 +2221,7 @@
             menuToggle.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.setAttribute('aria-label', 'Abrir menu');
+            updateMenuAccessibility(false);
             document.body.classList.remove('menu-open');
             if (restoreFocus) menuPreviousFocus?.focus({ preventScroll: true });
         }
@@ -2038,6 +2232,11 @@
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => closeMenu({ restoreFocus: false }));
+        });
+
+        mobileNavQuery.addEventListener('change', event => {
+            if (!event.matches && navLinks.classList.contains('nav-open')) closeMenu({ restoreFocus: false });
+            updateMenuAccessibility(false);
         });
 
         document.addEventListener('keydown', event => {

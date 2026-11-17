@@ -113,7 +113,8 @@ export default async function handler(request) {
         200,
         { ETag: result.etag, 'X-Catalog-Source': result.source },
       );
-    } catch {
+    } catch (cause) {
+      console.error('[catalog] GET failed while reading the saved or static catalog.', cause);
       return error('Não foi possível carregar o catálogo.', 503);
     }
   }
@@ -155,7 +156,8 @@ export default async function handler(request) {
     if (!result.modified) return error('O catálogo mudou durante a gravação. Tente novamente.', 409);
     if (!result.etag) return error('Não foi possível confirmar a gravação do catálogo no Netlify Blobs.', 503);
     return json({ saved: true, version: result.etag }, 200, { ETag: result.etag });
-  } catch {
+  } catch (cause) {
+    console.error('[catalog] PUT failed while reading or writing Netlify Blobs.', cause);
     return error('Não foi possível salvar o catálogo no Netlify Blobs.', 503);
   }
 }
