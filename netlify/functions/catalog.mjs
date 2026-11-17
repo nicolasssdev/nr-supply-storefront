@@ -77,12 +77,14 @@ export default async function handler(request) {
   try {
     const current = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
     const actualETag = current?.etag || defaultETag;
-    if (!expectedETag || expectedETag !== actualETag) return error('O catálogo mudou em outro painel. Recarregue e tente novamente.', 409);
+    if (!expectedETag || expectedETag !== actualETag) return error('O catálogo mudou desde que o painel carregou. Atualize a versão e tente novamente.', 409);
 
+    // The strong read above checks the client's version. Write the accepted
+    // snapshot directly instead of performing a second conditional ETag check.
     const result = current
-      ? await store.setJSON(catalogKey, catalog, { onlyIfMatch: current.etag })
+      ? await store.setJSON(catalogKey, catalog)
       : await store.setJSON(catalogKey, catalog, { onlyIfNew: true });
-    if (!result.modified) return error('O catálogo mudou em outro painel. Recarregue e tente novamente.', 409);
+    if (!result.modified || !result.etag) return error('Não foi possível confirmar a gravação do catálogo no Netlify Blobs.', 503);
     return json({ saved: true }, 200, { ETag: result.etag });
   } catch {
     return error('Não foi possível salvar o catálogo no Netlify Blobs.', 503);
