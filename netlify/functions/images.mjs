@@ -13,10 +13,12 @@ function imageKey(value) {
 
 export default async function handler(request) {
   if (request.method === 'GET') {
-    const key = new URL(request.url).searchParams.get('key');
+    const url = new URL(request.url);
+    const suppliedKey = url.searchParams.get('key') || url.pathname;
+    const key = suppliedKey.split('/').filter(Boolean).at(-1);
     if (!imageKey(key)) return error('Imagem não encontrada.', 404);
     try {
-      const entry = await store.getWithMetadata(key, { type: 'arrayBuffer' });
+      const entry = await store.getWithMetadata(key, { type: 'arrayBuffer', consistency: 'strong' });
       if (!entry) return error('Imagem não encontrada.', 404);
       const type = entry.metadata?.contentType;
       if (!allowedTypes.has(type)) return error('Formato de imagem não permitido.', 415);

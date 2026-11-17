@@ -50,7 +50,11 @@ export default async function handler(request) {
   if (request.method === 'GET') {
     try {
       const result = await getCurrentCatalog(request);
-      return json(result.catalog, 200, { ETag: result.etag, 'X-Catalog-Source': result.source });
+      return json(
+        { ...result.catalog, version: result.etag },
+        200,
+        { ETag: result.etag, 'X-Catalog-Source': result.source },
+      );
     } catch {
       return error('Não foi possível carregar o catálogo.', 503);
     }
@@ -66,26 +70,28 @@ export default async function handler(request) {
   try {
     const raw = await request.text();
     if (new TextEncoder().encode(raw).byteLength > maxCatalogBytes) return error('O catálogo excede o tamanho permitido.', 413);
-    catalog = JSON.parse(raw);
+    const payload = JSON.parse(raw);
+    catalog = { products: payload.products, catalogs: payload.catalogs };
+    catalog.version = payload.version || request.headers.get('if-match');
   } catch {
     return error('O corpo enviado não é JSON válido.', 400);
   }
   const validationError = validateCatalog(catalog);
   if (validationError) return error(validationError, 400);
 
-  const expectedETag = request.headers.get('if-match');
+  const expectedETag = catalog.version;
+  delete catalog.version;
   try {
     const current = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
     const actualETag = current?.etag || defaultETag;
     if (!expectedETag || expectedETag !== actualETag) return error('O catálogo mudou desde que o painel carregou. Atualize a versão e tente novamente.', 409);
 
-    // The strong read above checks the client's version. Write the accepted
-    // snapshot directly instead of performing a second conditional ETag check.
     const result = current
-      ? await store.setJSON(catalogKey, catalog)
+      ? await store.setJSON(catalogKey, catalog, { onlyIfMatch: current.etag })
       : await store.setJSON(catalogKey, catalog, { onlyIfNew: true });
-    if (!result.modified || !result.etag) return error('Não foi possível confirmar a gravação do catálogo no Netlify Blobs.', 503);
-    return json({ saved: true }, 200, { ETag: result.etag });
+    if (!result.modified) return error('O catálogo mudou durante a gravação. Tente novamente.', 409);
+    if (!result.etag) return error('Não foi possível confirmar a gravação do catálogo no Netlify Blobs.', 503);
+    return json({ saved: true, version: result.etag }, 200, { ETag: result.etag });
   } catch {
     return error('Não foi possível salvar o catálogo no Netlify Blobs.', 503);
   }

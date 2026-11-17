@@ -92,13 +92,13 @@
 
     const same = (left, right) => JSON.stringify(left) === JSON.stringify(right);
     async function persist(message = 'Alterações salvas no catálogo compartilhado.') {
-      const write = () => api('/api/catalog', {method:'PUT', headers:{'Content-Type':'application/json','If-Match':serverETag}, body:JSON.stringify({products,catalogs})});
+      const write = () => api('/api/catalog', {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({products,catalogs,version:serverETag})});
       try {
-        const {response}=await write();
-        serverETag=response.headers.get('ETag')||serverETag;
+        const {response,data:saved}=await write();
+        serverETag=saved.version||response.headers.get('ETag')||serverETag;
       } catch (error) {
         if (!/409|catálogo mudou/i.test(error.message)) throw error;
-        const {response, data:latest}=await api('/api/catalog',{cache:'no-store'});
+        const {response,data:latest}=await api('/api/catalog',{cache:'no-store'});
         const remoteProducts=latest.products||[];
         const baseById=new Map(savedProducts.map(item=>[String(item.id),item]));
         const localById=new Map(products.map(item=>[String(item.id),item]));
@@ -118,10 +118,10 @@
         for (const name of catalogs) if (!savedCatalogs.includes(name)) remoteCatalogs.add(name);
         for (const name of savedCatalogs) if (!localCatalogs.has(name)) remoteCatalogs.delete(name);
         catalogs=[...remoteCatalogs];
-        serverETag=response.headers.get('ETag')||'';
+        serverETag=latest.version||response.headers.get('ETag')||'';
         try {
           const saved=await write();
-          serverETag=saved.response.headers.get('ETag')||serverETag;
+          serverETag=saved.data.version||saved.response.headers.get('ETag')||serverETag;
         } catch (retryError) {
           if (/409|catálogo mudou/i.test(retryError.message)) throw new Error('O catálogo mudou novamente durante o salvamento. Atualize a página e tente de novo.');
           throw retryError;
@@ -322,7 +322,7 @@
     });
 
     function showLogin(message='') { byId('login-panel').hidden=false; byId('admin-app').hidden=true; byId('logout-button').hidden=true; byId('login-status').textContent=message; }
-    async function loadCatalog() { const {response,data}=await api('/api/catalog',{cache:'no-store'}); serverETag=response.headers.get('ETag')||''; products=data.products||[]; catalogs=data.catalogs||[]; savedProducts=clone(products); savedCatalogs=[...catalogs]; byId('admin-app').hidden=false; byId('login-panel').hidden=true; byId('logout-button').hidden=false; renderCatalogs(); renderList(); setForm(products[0]||null); }
+    async function loadCatalog() { const {response,data}=await api('/api/catalog',{cache:'no-store'}); serverETag=data.version||response.headers.get('ETag')||''; products=data.products||[]; catalogs=data.catalogs||[]; savedProducts=clone(products); savedCatalogs=[...catalogs]; byId('admin-app').hidden=false; byId('login-panel').hidden=true; byId('logout-button').hidden=false; renderCatalogs(); renderList(); setForm(products[0]||null); }
     byId('login-form').addEventListener('submit',async event=>{event.preventDefault();byId('login-status').textContent='Conectando…';try{await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:byId('login-email').value,password:byId('login-password').value})});const {data:session}=await api('/api/session',{cache:'no-store'});byId('admin-user').textContent=session.email||'ADMIN';await loadCatalog();}catch(error){showLogin(error.message);}});
     byId('logout-button').addEventListener('click',async()=>{try{await api('/api/logout',{method:'POST'});}finally{showLogin('Sessão encerrada.');}});
     async function init(){try{const {data}=await api('/api/session',{cache:'no-store'});byId('admin-user').textContent=data.email||'ADMIN';await loadCatalog();}catch(_){showLogin('Entre para editar o catálogo.');}}
