@@ -394,10 +394,10 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('imagens-supply-111/sueter-zi-neck-frente.jpg') center/cover no-repeat;
             z-index: -2;
             /* background-attachment: fixed removido — jank em mobile */
         }
+        .hero-bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; }
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -603,7 +603,7 @@
 
         .product-img-wrapper {
             position: relative;
-            padding-top: 100%;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             background: var(--surface-2);
         }
@@ -774,6 +774,7 @@
         .archived-card .product-img-wrapper img {
             filter: grayscale(100%) contrast(1.1);
         }
+        .archived-card .product-img-wrapper { aspect-ratio: 12 / 5; }
 
         /* Selo exibido sobre a capa das peças arquivadas */
         .stamp {
@@ -798,6 +799,7 @@
 
         /* Ajuste sutil apenas da Jaqueta Velejador no celular */
         @media (max-width: 768px) {
+            .archived-card .product-img-wrapper { aspect-ratio: 4 / 5; }
             .archived-card .product-img-wrapper img[alt*="Velejador" i],
             .archived-card .product-img-wrapper img[alt*="Velejeador" i] {
                 filter: grayscale(98%) brightness(0.92) contrast(0.95) saturate(0.85) !important;
@@ -875,10 +877,11 @@
         }
         .modal-main-image {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 16 / 9;
             object-fit: cover;
             background: var(--bg);
         }
+        .product-modal-panel.archived-product .modal-main-image { aspect-ratio: 12 / 5; }
         .modal-thumbnails {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -987,6 +990,7 @@
                 grid-template-columns: 1fr;
             }
             .modal-gallery { padding: 14px; }
+            .product-modal-panel.archived-product .modal-main-image { aspect-ratio: 4 / 5; }
             .modal-details { padding: 34px 22px 30px; }
             .modal-close { top: 12px; right: 12px; }
         }
@@ -1078,6 +1082,7 @@
             flex-wrap: wrap;
         }
         .section-banner { grid-column:1/-1; display:block; width:100%; overflow:hidden; margin:0 0 clamp(24px,4vw,48px); border:1px solid var(--border); line-height:0; }
+        .section-banner[hidden] { display:none!important; }
         .section-banner img { display:block; width:100%; height:auto; aspect-ratio:12/5; object-fit:cover; }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
         .archived-link, .archived-link:visited { background:#fffefa; color:#191a18; border-color:#fffefa; }
@@ -1207,7 +1212,6 @@
         #hero { min-height: min(850px, 92svh); text-align: left; justify-content: flex-start; background: var(--cement); }
         .hero-bg {
             inset: 0 0 0 37%;
-            background: url('imagens-supply-111/sueter-zi-neck-frente.jpg') center 42%/cover no-repeat;
             opacity: .92;
             z-index: 0;
         }
@@ -1284,7 +1288,8 @@
         @media (max-width: 768px) {
             .nav-links { background: #efede7; }
             #hero { min-height: 88svh; align-items: flex-end; }
-            .hero-bg { inset: 0; background-position: 58% center; }
+            .hero-bg { inset: 0; }
+            .hero-bg img { object-position: 58% center; }
             .hero-overlay { background: linear-gradient(0deg, rgba(196,197,194,.98) 0%, rgba(196,197,194,.85) 35%, rgba(196,197,194,.05) 100%); }
             .hero-content { width: 100%; padding: 0 7vw 15vh; }
             .hero-content h1 { font-size: clamp(3.4rem, 17vw, 6rem); }
@@ -1336,7 +1341,7 @@
 
     <!-- ── HERO ────────────────────────────────────────────────── -->
     <section id="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
+        <picture class="hero-bg" data-banner="hero" aria-hidden="true"><source media="(max-width:700px)" srcset="imagens-supply-111/sueter-zi-neck-frente.jpg"><img src="imagens-supply-111/sueter-zi-neck-frente.jpg" alt=""></picture>
         <div class="hero-grain" aria-hidden="true"></div>
         <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -1366,7 +1371,7 @@
     <!-- ── CATÁLOGO ────────────────────────────────────────────── -->
     <section id="catalogo" class="section-padding">
         <div class="container">
-            <h2 class="sr-only">Essentials · Linha permanente</h2><picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_essentials/NR_essentials-completo_mobile_1080x1350.png"><img src="banners-logo/banners_essentials/NR_essentials-completo_desktop_1920x800.png" alt="NR Supply Essentials — linha permanente"></picture>
+            <h2 class="sr-only">Essentials · Linha permanente</h2><picture class="section-banner" data-banner="essentials"><source media="(max-width:700px)" srcset="banners-logo/banners_essentials/NR_essentials-completo_mobile_1080x1350.png"><img src="banners-logo/banners_essentials/NR_essentials-completo_desktop_1920x800.png" alt="NR Supply Essentials — linha permanente"></picture>
             
 
             <div class="filters reveal" id="catalog-filters" aria-label="Filtrar produtos por marca"></div>
@@ -1377,7 +1382,7 @@
 
     <section id="the-few" class="section-padding">
         <div class="container few-inner">
-            <picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_02_the-few_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_02_the-few_desktop_1920x800.png" alt="NR Supply — THE FEW"></picture>
+            <picture class="section-banner" data-banner="theFew"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_02_the-few_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_02_the-few_desktop_1920x800.png" alt="NR Supply — THE FEW"></picture>
             <div>
                 <p class="few-kicker">Curadoria rara · THE FEW</p>
                 <h2 class="section-title reveal">Encontradas em<br>poucas unidades.</h2>
@@ -1395,6 +1400,7 @@
     <section id="nr-index" class="section-padding">
         <div class="container text-center">
             <h2 class="section-title reveal" style="justify-content:center">NR Index™</h2>
+            <picture class="section-banner" data-banner="nrIndex" hidden><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_11_nr-index_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_11_nr-index_desktop_1920x800.png" alt="NR Supply — NR Index"></picture>
             <p class="index-intro reveal">
                 Nosso sistema proprietário de classificação de raridade.
                 Indica o nível de disponibilidade e a previsibilidade de
@@ -1425,7 +1431,7 @@
     <!-- ── ARCHIVED ────────────────────────────────────────────── -->
     <section id="archived" class="section-padding">
         <div class="container">
-            <h2 class="sr-only">Archived</h2><picture class="section-banner"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_03_archived_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_03_archived_desktop_1920x800.png" alt="NR Supply — peças archived"></picture>
+            <h2 class="sr-only">Archived</h2><picture class="section-banner" data-banner="archived"><source media="(max-width:700px)" srcset="banners-logo/banners_v2/NR_03_archived_mobile_1080x1350.png"><img src="banners-logo/banners_v2/NR_03_archived_desktop_1920x800.png" alt="NR Supply — peças archived"></picture>
 
             <div class="catalog-grid" id="archived-grid" aria-live="polite"></div>
         </div>
@@ -1595,12 +1601,28 @@
         /* Catalog records are maintained in products-data.js and editable in admin.html. */
         let products = window.NR_PRODUCTS || [];
         let productCatalogs = window.NR_CATALOGS || [];
+        function applyBanners(banners) {
+            if (!banners || typeof banners !== 'object') return;
+            for (const [key, sources] of Object.entries(banners)) {
+                const picture = document.querySelector(`picture[data-banner="${key}"]`);
+                if (!picture || !sources || typeof sources !== 'object') continue;
+                if (key === 'nrIndex') {
+                    picture.hidden = sources.enabled !== true;
+                    if (picture.hidden) continue;
+                }
+                const mobile = picture.querySelector('source');
+                const desktop = picture.querySelector('img');
+                if (mobile && sources.mobile) mobile.srcset = sources.mobile;
+                if (desktop && sources.desktop) desktop.src = sources.desktop;
+            }
+        }
         try {
             const response = await fetch('/api/catalog', {cache: 'no-store'});
             if (response.ok) {
                 const sharedCatalog = await response.json();
                 if (Array.isArray(sharedCatalog.products)) products = sharedCatalog.products;
                 if (Array.isArray(sharedCatalog.catalogs)) productCatalogs = sharedCatalog.catalogs;
+                applyBanners(sharedCatalog.banners);
             }
         } catch (_) {}
 
@@ -1784,6 +1806,7 @@
         function openProductModal(product) {
             lastFocusedElement = document.activeElement;
             modal.dataset.productId = product.id;
+            modalPanel.classList.toggle('archived-product', Boolean(product.archived));
             modalEyebrow.textContent = `${product.brand ? `${product.brand} • ` : ''}${product.collection}`;
             modalTitle.textContent = product.name;
             modalPrice.textContent = formatPrice(product.price);

@@ -6,15 +6,53 @@ const store = getStore('nr-supply-catalog');
 const catalogKey = 'catalog.json';
 const defaultETag = '"static-default"';
 const maxCatalogBytes = 4 * 1024 * 1024;
+const defaultBanners = {
+  hero: {
+    desktop: 'imagens-supply-111/sueter-zi-neck-frente.jpg',
+    mobile: 'imagens-supply-111/sueter-zi-neck-frente.jpg',
+  },
+  essentials: {
+    desktop: 'banners-logo/banners_essentials/NR_essentials-completo_desktop_1920x800.png',
+    mobile: 'banners-logo/banners_essentials/NR_essentials-completo_mobile_1080x1350.png',
+  },
+  theFew: {
+    desktop: 'banners-logo/banners_v2/NR_02_the-few_desktop_1920x800.png',
+    mobile: 'banners-logo/banners_v2/NR_02_the-few_mobile_1080x1350.png',
+  },
+  archived: {
+    desktop: 'banners-logo/banners_v2/NR_03_archived_desktop_1920x800.png',
+    mobile: 'banners-logo/banners_v2/NR_03_archived_mobile_1080x1350.png',
+  },
+  nrIndex: {
+    enabled: false,
+    desktop: 'banners-logo/banners_v2/NR_11_nr-index_desktop_1920x800.png',
+    mobile: 'banners-logo/banners_v2/NR_11_nr-index_mobile_1080x1350.png',
+  },
+};
+
+function normalizeBanners(value) {
+  return Object.fromEntries(Object.entries(defaultBanners).map(([key, defaults]) => [key, key === 'nrIndex'
+    ? {
+        enabled: value?.[key]?.enabled === true,
+        desktop: value?.[key]?.desktop || defaults.desktop,
+        mobile: value?.[key]?.mobile || defaults.mobile,
+      }
+    : {
+        desktop: value?.[key]?.desktop || defaults.desktop,
+        mobile: value?.[key]?.mobile || defaults.mobile,
+      },
+  ]));
+}
 
 async function getCurrentCatalog(request) {
   const saved = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
-  if (saved) return { catalog: saved.data, etag: saved.etag, source: 'blobs' };
+  if (saved) return { catalog: { ...saved.data, banners: normalizeBanners(saved.data.banners) }, etag: saved.etag, source: 'blobs' };
 
   const url = new URL('/products-data.json', request.url);
   const response = await fetch(url, { headers: { accept: 'application/json' } });
   if (!response.ok) throw new Error('Static catalog could not be loaded.');
   const catalog = await response.json();
+  catalog.banners = normalizeBanners(catalog.banners);
   return { catalog, etag: defaultETag, source: 'defaults' };
 }
 
@@ -22,6 +60,12 @@ function validImageReference(value) {
   return typeof value === 'string' && (
     /^imagens-[a-z0-9_-]+\/[a-z0-9._-]+\.(?:jpe?g|png|webp)$/i.test(value) ||
     /^\/?api\/images\/images-[0-9a-f-]+\.(?:jpe?g|png|webp)$/i.test(value)
+  );
+}
+
+function validBannerReference(value) {
+  return validImageReference(value) || (
+    typeof value === 'string' && /^banners-logo\/[a-z0-9_-]+\/[a-z0-9._-]+\.(?:jpe?g|png|webp)$/i.test(value)
   );
 }
 
@@ -43,6 +87,20 @@ function validateCatalog(value) {
     if (!Array.isArray(product.filterBrands) || product.filterBrands.some(item => typeof item !== 'string' || item.length > 80)) return 'Filtros inválidos.';
   }
   if (value.catalogs.some(item => typeof item !== 'string' || !item.trim() || item.length > 100)) return 'Nome de coleção inválido.';
+  if (value.banners !== undefined) {
+    if (!value.banners || typeof value.banners !== 'object' || Array.isArray(value.banners)) return 'Configuração de banners inválida.';
+    for (const key of Object.keys(defaultBanners)) {
+      const banner = value.banners[key];
+      if (key === 'nrIndex') {
+        if (banner === undefined) continue;
+        if (!banner || typeof banner.enabled !== 'boolean') return 'Configuração opcional de NR Index inválida.';
+        if (banner.enabled && (!validBannerReference(banner.desktop) || !validBannerReference(banner.mobile))) return 'Escolha imagens desktop e celular para o banner opcional de NR Index.';
+        if (!banner.enabled && ((banner.desktop && !validBannerReference(banner.desktop)) || (banner.mobile && !validBannerReference(banner.mobile)))) return 'Uma imagem opcional de NR Index não é válida.';
+        continue;
+      }
+      if (!banner || !validBannerReference(banner.desktop) || !validBannerReference(banner.mobile)) return 'Uma ou mais imagens de banner não são válidas.';
+    }
+  }
   return null;
 }
 
@@ -71,7 +129,7 @@ export default async function handler(request) {
     const raw = await request.text();
     if (new TextEncoder().encode(raw).byteLength > maxCatalogBytes) return error('O catálogo excede o tamanho permitido.', 413);
     const payload = JSON.parse(raw);
-    catalog = { products: payload.products, catalogs: payload.catalogs };
+    catalog = { products: payload.products, catalogs: payload.catalogs, banners: payload.banners };
     catalog.version = payload.version || request.headers.get('if-match');
   } catch {
     return error('O corpo enviado não é JSON válido.', 400);
@@ -85,6 +143,11 @@ export default async function handler(request) {
     const current = await store.getWithMetadata(catalogKey, { type: 'json', consistency: 'strong' });
     const actualETag = current?.etag || defaultETag;
     if (!expectedETag || expectedETag !== actualETag) return error('O catálogo mudou desde que o painel carregou. Atualize a versão e tente novamente.', 409);
+
+    catalog.banners = normalizeBanners({
+      ...normalizeBanners(current?.data?.banners),
+      ...(catalog.banners || {}),
+    });
 
     const result = current
       ? await store.setJSON(catalogKey, catalog, { onlyIfMatch: current.etag })

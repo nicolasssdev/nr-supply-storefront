@@ -22,7 +22,7 @@ O catálogo publicado inicialmente aparece na vitrine mesmo antes da primeira gr
 
 ## Administração
 
-O painel permite criar/editar/excluir produto, editar preço e informações, adicionar imagens, criar coleções, importar/exportar backup JSON e restaurar o catálogo inicial. Alterações de produto ficam públicas depois de salvas. Edições simultâneas são protegidas por versão e pedem recarga se outro administrador gravar primeiro. Não invente valores ou dados de produto: campos não confirmados podem permanecer vazios.
+O painel permite criar/editar/excluir produto, editar preço e informações, adicionar imagens, criar coleções, trocar as imagens desktop/mobile da capa, Essentials, THE FEW e Archived, além de ativar opcionalmente um banner para NR Index. Importa/exporta backup JSON e restaura o catálogo inicial. Alterações ficam públicas depois de salvas. Edições simultâneas são protegidas por versão e pedem recarga se outro administrador gravar primeiro. Não invente valores ou dados de produto: campos não confirmados podem permanecer vazios.
 
 As imagens associadas no catálogo original são mantidas; imagens novas são explicitamente enviadas pelo administrador. Os banners fornecidos estão integrados nas seções de catálogo, THE FEW, NR Index e Archived. O catálogo inicial possui 11 registros (1 ativo e 10 Archived); o código 111 foi removido do sistema NR Index e a peça que o usava ficou sem classificação confirmada; o conteúdo ainda não confirma peça rara ativa para THE FEW.
 
