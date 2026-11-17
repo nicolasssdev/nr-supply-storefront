@@ -882,13 +882,36 @@
             min-height: 320px;
             overflow: hidden;
             background: var(--surface-2);
-            touch-action: pan-y;
         }
-        .modal-main-image {
+        .modal-image-track {
+            display: flex;
             width: 100%;
             height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-image-track::-webkit-scrollbar { display: none; }
+        .modal-image-track:focus-visible {
+            outline: 2px solid var(--text-secondary);
+            outline-offset: -2px;
+        }
+        .modal-main-image {
+            display: block;
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
             object-fit: contain;
             background: var(--surface-2);
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
         .modal-image-control {
             position: absolute;
@@ -1674,7 +1697,7 @@
             <div class="modal-gallery">
                 <div class="modal-image-stage" id="modal-image-stage">
                     <button class="modal-image-control previous" id="modal-image-previous" type="button" aria-label="Ver foto anterior" hidden>‹</button>
-                    <img class="modal-main-image" id="modal-main-image" src="" alt="">
+                    <div class="modal-image-track" id="modal-image-track" role="region" aria-label="Fotos do produto" tabindex="0"></div>
                     <button class="modal-image-control next" id="modal-image-next" type="button" aria-label="Ver próxima foto" hidden>›</button>
                     <span class="modal-image-counter" id="modal-image-counter" role="status" aria-live="polite" hidden></span>
                 </div>
@@ -1899,8 +1922,7 @@
         ========================================================= */
         const modal = document.getElementById('product-modal');
         const modalPanel = modal.querySelector('.product-modal-panel');
-        const modalMainImage = document.getElementById('modal-main-image');
-        const modalImageStage = document.getElementById('modal-image-stage');
+        const modalImageTrack = document.getElementById('modal-image-track');
         const modalPreviousImage = document.getElementById('modal-image-previous');
         const modalNextImage = document.getElementById('modal-image-next');
         const modalImageCounter = document.getElementById('modal-image-counter');
@@ -1916,7 +1938,7 @@
         let lastFocusedElement = null;
         let modalImages = [];
         let modalImageIndex = 0;
-        let imageSwipeStart = null;
+        let modalImageScrollFrame = 0;
 
         function buildWhatsappUrl(product, choices = {}) {
             const message = [
@@ -1944,11 +1966,19 @@
             modalThumbnails.hidden = images.length <= 1;
         }
 
-        function showModalImage(index) {
-            if (!modalImages.length) return;
-            modalImageIndex = (index + modalImages.length) % modalImages.length;
-            modalMainImage.src = modalImages[modalImageIndex];
-            modalMainImage.alt = `${modalMainImage.dataset.productAlt} — foto ${modalImageIndex + 1} de ${modalImages.length}`;
+        function renderModalImages(images, productAlt) {
+            modalImageTrack.innerHTML = images.map((image, index) => `
+                <img class="modal-main-image"
+                     src="${escapeHtml(image)}"
+                     alt="${escapeHtml(productAlt)} — foto ${index + 1} de ${images.length}"
+                     draggable="false"
+                     ${index === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+            `).join('');
+            modalImageTrack.scrollLeft = 0;
+        }
+
+        function updateModalImageControls(index) {
+            modalImageIndex = index;
             modalImageCounter.textContent = `${modalImageIndex + 1} / ${modalImages.length}`;
             modalPreviousImage.hidden = modalImages.length <= 1;
             modalNextImage.hidden = modalImages.length <= 1;
@@ -1958,7 +1988,15 @@
                 const active = thumbIndex === modalImageIndex;
                 thumb.classList.toggle('active', active);
                 thumb.setAttribute('aria-pressed', String(active));
+                if (active) thumb.scrollIntoView({ block: 'nearest', inline: 'nearest' });
             });
+        }
+
+        function showModalImage(index) {
+            if (!modalImages.length) return;
+            modalImageIndex = (index + modalImages.length) % modalImages.length;
+            modalImageTrack.scrollTo({ left: modalImageIndex * modalImageTrack.clientWidth, behavior: 'smooth' });
+            updateModalImageControls(modalImageIndex);
         }
 
         function openProductModal(product) {
@@ -1970,7 +2008,7 @@
             modalPrice.textContent = formatPrice(product.price);
             modalDescription.textContent = product.description;
             modalImages = Array.isArray(product.images) ? product.images.filter(image => typeof image === 'string' && image.trim()) : [];
-            modalMainImage.dataset.productAlt = [product.brand, product.name].filter(Boolean).join(' ');
+            const modalProductAlt = [product.brand, product.name].filter(Boolean).join(' ');
 
             const specs = [
                 ['Piece No.', product.piece],
@@ -1988,13 +2026,12 @@
                 </div>
             `).join('');
 
+            renderModalImages(modalImages, modalProductAlt);
             renderModalThumbnails(modalImages);
             modalPanel.scrollTop = 0;
             if (modalImages.length) {
                 showModalImage(0);
             } else {
-                modalMainImage.removeAttribute('src');
-                modalMainImage.alt = modalMainImage.dataset.productAlt;
                 modalPreviousImage.hidden = true;
                 modalNextImage.hidden = true;
                 modalImageCounter.hidden = true;
@@ -2053,19 +2090,16 @@
         modalPreviousImage.addEventListener('click', () => showModalImage(modalImageIndex - 1));
         modalNextImage.addEventListener('click', () => showModalImage(modalImageIndex + 1));
 
-        modalImageStage.addEventListener('pointerdown', event => {
-            if (!modal.classList.contains('open') || event.pointerType === 'mouse' || !event.isPrimary) return;
-            imageSwipeStart = { x: event.clientX, y: event.clientY };
+        modalImageTrack.addEventListener('scroll', () => {
+            if (modalImageScrollFrame) cancelAnimationFrame(modalImageScrollFrame);
+            modalImageScrollFrame = requestAnimationFrame(() => {
+                const slideWidth = modalImageTrack.clientWidth;
+                if (!slideWidth || !modalImages.length) return;
+                const visibleIndex = Math.max(0, Math.min(modalImages.length - 1, Math.round(modalImageTrack.scrollLeft / slideWidth)));
+                if (visibleIndex !== modalImageIndex) updateModalImageControls(visibleIndex);
+                modalImageScrollFrame = 0;
+            });
         });
-        modalImageStage.addEventListener('pointerup', event => {
-            if (!imageSwipeStart) return;
-            const deltaX = event.clientX - imageSwipeStart.x;
-            const deltaY = event.clientY - imageSwipeStart.y;
-            imageSwipeStart = null;
-            if (Math.abs(deltaX) < 44 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
-            showModalImage(modalImageIndex + (deltaX < 0 ? 1 : -1));
-        });
-        modalImageStage.addEventListener('pointercancel', () => { imageSwipeStart = null; });
 
         modalThumbnails.addEventListener('click', event => {
             const thumb = event.target.closest('.modal-thumb');
